@@ -51,6 +51,9 @@ def api_attractions():
 			next_page_value = (next_page_select,)
 			cursor.execute(data_select,page_value)
 			data = cursor.fetchall()
+			for i in range(len(data)):
+				list=data[i]["images"].split("['")[1].split("']")[0].split("', '")
+				data[i]["images"]=list
 			cursor.execute(data_select,next_page_value)
 			next_page_data=cursor.fetchall()
 			if next_page_data == []:
@@ -62,6 +65,9 @@ def api_attractions():
 			page_value = (keyword,"%"+f"{keyword}"+"%",page_select)
 			cursor.execute(keyword_select,page_value)
 			data = cursor.fetchall()
+			for i in range(len(data)):
+				list=data[i]["images"].split("['")[1].split("']")[0].split("', '")
+				data[i]["images"]=list
 			next_page_value = (keyword,"%"+f"{keyword}"+"%",next_page_select)			
 			cursor.execute(keyword_select,next_page_value)
 			next_page_data = cursor.fetchall()
@@ -86,6 +92,8 @@ def api_attraction_id(id):
 		cursor.execute(data_select,value)
 		data = cursor.fetchone()
 		if data != None:
+			list=data["images"].split("['")[1].split("']")[0].split("', '")
+			data["images"]=list
 			return make_response(jsonify({"data":data}),200)
 		else:
 			return make_response(jsonify({"error":True,"message":"無此景點"}),400)

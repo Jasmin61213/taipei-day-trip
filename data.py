@@ -41,12 +41,12 @@ for attraction in list:
         l=len(img.split("."))
         img_check=img.split(".")[l-1]
         # print(img_check)
-        if img_check=="jpg" or "JPG":
+        if img_check=="jpg" or img_check=="JPG":
             images.append("https"+attraction["file"].split("https")[i])
-    images=str(images)
-    # print(images)
-    cursor=mydb.cursor(dictionary=True)
-    sql="INSERT INTO attraction(name,category,description,address,transport,mrt,lat,lng,images) VALUE (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    val=(name,category,description,address,transport,mrt,lat,lng,images)
-    cursor.execute(sql,val)
-    mydb.commit()
+        image=str(images)
+        print(image)
+    # cursor=mydb.cursor(dictionary=True)
+    # sql="INSERT INTO attraction(name,category,description,address,transport,mrt,lat,lng,images) VALUE (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    # val=(name,category,description,address,transport,mrt,lat,lng,image)
+    # cursor.execute(sql,val)
+    # mydb.commit()
