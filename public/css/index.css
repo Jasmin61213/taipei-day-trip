@@ -1,0 +1,263 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap);
+
+.body{
+    margin: 0px;
+    font-size: 16px;
+    font-family:"Noto Sans TC"
+}
+
+.header_bg{
+    position: sticky;
+    z-index: 999;
+    top: 0px;
+    height: 54px;
+    background-color: #FFFFFF;
+}
+
+.header{
+    margin:0px auto;
+    display: flex;
+    width: 1200px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    z-index: 999;
+    top: 0px;
+    background-color: #FFFFFF;
+}
+
+.title{
+    flex: none;
+    font-size: 30px;
+    color: #448899;
+
+}
+
+.right{
+    flex: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.func{
+    flex: none;
+    margin-right: 10px;
+}
+
+.welcome_image{
+    height: 320px;
+    background-size: Cover ;  
+    background-image: url("/image/welcome-image.png");
+    margin-bottom: 30px;
+}
+
+.welcome{
+    width: 1180px;
+    padding: 0px 10px;
+    margin:0px auto;
+}
+
+.describe1{
+    padding-top: 85px;
+    font-size: 28px;
+    color: #F8F8F8;
+}
+
+.describe2{
+    padding-top: 15px;
+    color: #F8F8F8;
+}
+
+.input{
+    display: flex;
+    margin-top: 25px;
+    height: 46px;
+}
+
+.input_text{
+    flex: none;
+    width: 382px;
+    border: 0.5px #ffffff solid;
+    border-radius: 5px 0px 0px 5px;
+    color: #757575;
+    padding-left: 15px;    
+}
+
+.categories_menu{
+    display: none;
+}
+
+.categories_list{
+    z-index: 998;
+    display: grid;
+    grid-template-columns: repeat(3,33%);
+    width: 390px;
+    background-color: #ffffff;
+    padding: 5px;
+    border: 0.5px #ffffff solid;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 20px #AABBCC;
+}
+
+.category_list{
+    font-size: 14px;
+    height: 20px;line-height: 20px;
+    padding: 10px 15px;
+}
+
+.category_list:hover {
+    border-radius: 5px;
+    background-color: #E8E8E8;
+}
+
+.search_image{
+    flex: none;
+    width: 60px;
+    align-items: center;
+    background-color: #448899;
+    border: 0.5px #448899 solid;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.content{
+    z-index: -5;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(4,270px);
+    gap: 33px;
+    justify-content: center;
+}
+
+.attraction{
+    flex: none;
+    z-index: -100;
+}
+
+.img{
+    flex: none;
+    border: 0.5px #757575 solid;
+    border-radius: 5px 5px 0px 0px;
+    width: 269px;
+    aspect-ratio: 4/3;
+}
+
+.attraction_name{
+    margin-top: -45px;
+    color: #ffffff;
+    border-left: 0.5px #757575 solid;
+    border-right: 0.5px #757575 solid; 
+    background-color: rgba(0, 0, 0,0.6);
+    height: 20px;line-height: 20px;
+    position: relative;
+    padding: 10px;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+}
+
+.transport{
+    display: flex;
+    border: 0.5px #757575 solid;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.mrt{
+    flex: none;
+    margin-left: 10px;
+    height: 45px;line-height: 45px;
+}
+
+.category{
+    flex: auto;
+    margin-right: 10px;
+    text-align: right;
+    height: 45px;line-height: 45px;
+}
+
+.footer{
+    height: 104px;
+    background-color: #757575;
+    text-align: center;
+    line-height: 104px;
+    color: #ffffff;
+}
+
+@media (max-width:1199px){
+    .header_bg{
+        flex-wrap: wrap;
+    }
+
+    .header{
+        width: 100%;
+    }
+
+    .title{
+        margin-left: 10px;
+    }
+
+    .right{
+        margin-right: 0px;
+    }
+
+    .welcome{
+        margin-left: 50px;
+        width: 70%;
+    }
+
+    .input_text{
+        width: 45%;
+    }
+
+    .content{
+        grid-template-columns: repeat(2,45%);
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .img{
+        width: 100%;
+    }
+}
+
+@media (max-width:599px){
+    .header_bg{
+        flex-wrap: wrap;
+    }
+
+    .header{
+        width: 100%;
+    }
+
+    .title{
+        margin-left: 10px;
+    }
+
+    .right{
+        margin-right: 0px;
+    }
+
+    .welcome{
+        margin-left: 20px;
+        width: 85%;
+    }
+
+    .input_text{
+        width: 65%;
+    }
+
+    .categories_list{
+        width: 300px;
+    }
+
+    .content{
+        grid-template-columns: repeat(1,90%);
+        margin: 0px;
+    }
+    
+    .img{
+        width: 100%;
+    }
+}
