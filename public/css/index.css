@@ -31,7 +31,7 @@
     flex: none;
     font-size: 30px;
     color: #448899;
-
+    font-weight: 700;
 }
 
 .right{
@@ -62,11 +62,13 @@
     padding-top: 85px;
     font-size: 28px;
     color: #F8F8F8;
+    font-weight: 700;
 }
 
 .describe2{
     padding-top: 15px;
     color: #F8F8F8;
+    font-weight: 700;
 }
 
 .input{
@@ -85,11 +87,12 @@
 }
 
 .categories_menu{
+    position: relative;
     display: none;
+    z-index: 998;
 }
 
 .categories_list{
-    z-index: 998;
     display: grid;
     grid-template-columns: repeat(3,33%);
     width: 390px;
@@ -156,6 +159,7 @@
     overflow: hidden; 
     white-space: nowrap; 
     text-overflow: ellipsis; 
+    font-weight: 700;
 }
 
 .transport{
@@ -183,6 +187,11 @@
     text-align: center;
     line-height: 104px;
     color: #ffffff;
+}
+
+a{
+    text-decoration: none;
+    color: #757575;
 }
 
 @media (max-width:1199px){
@@ -254,7 +263,7 @@
 
     .content{
         grid-template-columns: repeat(1,90%);
-        margin: 0px;
+        margin: 30px 0px;
     }
     
     .img{

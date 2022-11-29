@@ -8,16 +8,17 @@ let url = "/api/attractions";
     })
     .then(function(data){
         let dataList = data.data;
-       //  let nextPage=data.nextPage;
         let firstImg = [];
         let name = [];
         let mrtContent = [];
         let categoryContent = [];
+        let id = [];
         for (let i = 0; i<data.data.length; i++){
             firstImg.push(dataList[i].images[0]);
             name.push(dataList[i].name);
             mrtContent.push(dataList[i].mrt);
             categoryContent.push(dataList[i].category);
+            id.push(dataList[i].id);
         };
         let target = document.querySelectorAll(".attraction_img");
         let transportTarget = document.querySelectorAll(".transport");                
@@ -48,7 +49,12 @@ let url = "/api/attractions";
             newCategory.className = "category";
             let categoryTextNode = document.createTextNode(categoryContent[i]);
             newCategory.appendChild(categoryTextNode);
-            transportTarget[i].replaceChild(newCategory,category[i]);                                  
+            transportTarget[i].replaceChild(newCategory,category[i]);  
+            //跳轉景點頁面
+            let link = document.querySelectorAll(".link");
+            for(let i = 0; i<link.length; i++){
+                link[i].setAttribute("href",`/attraction/${id[i]}`);
+            }
         };
     });
 
@@ -74,6 +80,9 @@ let callback = (entries,observer) => {
         .then(function(data){
             for (let i = 0; i<data.data.length; i++){
                 let content = document.getElementById("content");
+                let linkAll = document.createElement("a")
+                linkAll.className = "link"
+                linkAll.setAttribute("href",`/attraction/${data.data[i].id}`);
                 let newAttraction = document.createElement("div");
                 newAttraction.className = "attraction";
                 let newAttraction_image = document.createElement("div");
@@ -98,8 +107,9 @@ let callback = (entries,observer) => {
                 newAttraction_image.appendChild(newAttraction_name);
                 newAttraction.appendChild(newAttraction_image);
                 newAttraction.appendChild(newTransport);
-                content.appendChild(newAttraction);
-            };
+                linkAll.append(newAttraction);
+                content.appendChild(linkAll);
+            };    
             nextPage = data.nextPage;
         });
     });
@@ -119,13 +129,16 @@ function searchData(){
         if (data.data[0] == undefined){
             alert("查無此景點");
         }else{
-            main = document.querySelectorAll(".attraction")
+            main = document.querySelectorAll(".link")
             for (i = 0; i<main.length; i++){
                 main[i].remove();
             };
         };
         for (let i = 0; i<data.data.length; i++){
             let content = document.getElementById("content");
+            let linkAll = document.createElement("a")
+            linkAll.className = "link"
+            linkAll.setAttribute("href",`/attraction/${data.data[i].id}`);
             let newAttraction = document.createElement("div");
             newAttraction.className = "attraction";
             let newAttraction_image = document.createElement("div");
@@ -150,8 +163,9 @@ function searchData(){
             newAttraction_image.appendChild(newAttraction_name);
             newAttraction.appendChild(newAttraction_image);
             newAttraction.appendChild(newTransport);
-            content.appendChild(newAttraction);
-            };
+            linkAll.append(newAttraction);
+            content.appendChild(linkAll);
+        };
         nextPage = data.nextPage;
     });
 };
