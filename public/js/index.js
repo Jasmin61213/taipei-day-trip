@@ -200,3 +200,101 @@ input_text.addEventListener("click",function(event){
 document.addEventListener("click",function(){
     categories_menu.style.display = "none";
 });
+
+//註冊＆登入
+let signInContent = document.querySelector(".sign-in");
+let registerContent = document.querySelector(".register");
+let hideBg=document.querySelector(".hide-bg");
+let body = document.querySelector(".body");
+//打開登入頁面
+function sign(){
+    signInContent.style.display = "block";
+    hideBg.style.display="block";
+    hideBg.style.height=document.body.clientHeight+"px"; 
+    body.style.overflow = "hidden"
+};
+
+//關掉視窗
+function userClose(){
+    signInContent.style.display = "none";
+    registerContent.style.display = "none";
+    hideBg.style.display="none";
+    body.style.overflow = "auto"
+};
+
+//切換視窗
+function toRegister(){
+    signInContent.style.display = "none";
+    registerContent.style.display = "block";
+};
+function toSignIn(){
+    signInContent.style.display = "block";
+    registerContent.style.display = "none";
+};
+
+//登入會員
+function signIn(){
+    email = document.getElementById("signInEmail").value;
+    password = document.getElementById("signInPassword").value;
+    data = {
+        "email":email,
+        "password":password
+    };
+    fetch("/api/user/auth",{
+        method: "PUT",
+        body: JSON.stringify(data),
+        cache: "no-cache",
+        headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+        }  
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(res){
+        if (res.ok == true) {
+            alert("登入成功");
+            signInContent.style.display = "none";
+            hideBg.style.display="none";
+            body.style.overflow = "auto"
+        };
+        if (res.error == true) {
+            alert("登入失敗");
+        };          
+    });
+};
+
+//註冊會員
+function register(){
+    userName= document.getElementById("registerName").value;
+    email = document.getElementById("registerEmail").value;
+    password = document.getElementById("registerPassword").value;
+    data = {
+        "name":userName,
+        "email":email,
+        "password":password
+    };
+    fetch("/api/user",{
+        method: "POST",
+        body: JSON.stringify(data),
+        cache: "no-cache",
+        headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+        }  
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(res){
+        if (res.ok == true) {
+            alert("註冊成功");
+            signInContent.style.display = "block";
+            registerContent.style.display = "none";
+        };
+        if (res.error == true) {
+            alert("註冊失敗");
+        };          
+    });
+};

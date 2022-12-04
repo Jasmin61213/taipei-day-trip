@@ -1,3 +1,4 @@
+import email
 from http.cookiejar import Cookie
 from flask import *
 from flask_restful import Api, Resource
@@ -12,9 +13,9 @@ app=Flask(
 
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+app.config["secret"] = "this-is-secret-key"
 
 api=Api(app)
-
 # connection pool
 import mysql.connector.pooling
 dbconfig={
@@ -134,9 +135,10 @@ def api_categories():
 
 @app.route("/api/user",methods=["POST"])
 def api_user():
-	name=request.form["name"]
-	email=request.form["email"]
-	password=request.form["password"]
+	user_content = request.get_json()
+	name = user_content["name"]
+	email = user_content["email"]
+	password = user_content["password"]
 	try:
 		connection_object = connection_pool.get_connection()
 		cursor = connection_object.cursor(dictionary=True)
@@ -182,21 +184,22 @@ def api_user_auth():
 			return make_response(jsonify({"data":user}),200)
 	if request.method=="PUT":
 		try:
-			email=request.form["email"]
-			password=request.form["password"]
+			user_content = request.get_json()
+			email = user_content["email"]
+			password = user_content["password"]
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor(dictionary=True)
 			user_select = "SELECT id,name,email FROM user WHERE email=%s AND password=%s"
 			value = (email,password)
 			cursor.execute(user_select,value)
 			user = cursor.fetchone()
-			if user != []:
+			if user == None:
+				return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
+			else:
 				token = jwt.encode(user, "secret", algorithm="HS256")
 				res = make_response(jsonify({"ok":True}),200)
 				res.set_cookie('token',token,max_age=604800)
 				return res
-			else:
-				return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
 		except:
 			return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
 		finally:

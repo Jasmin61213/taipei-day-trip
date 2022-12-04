@@ -6,6 +6,17 @@
     font-family:"Noto Sans TC"
 }
 
+.hide-bg { 
+    position:absolute;
+    left:0px;
+    top:0px;
+    background-color:#000;
+    width:100%;
+    opacity:0.25;
+    display:none;
+    z-Index:2;
+}
+
 .header_bg{
     position: sticky;
     z-index: 999;
@@ -34,6 +45,7 @@
     font-size: 30px;
     color: #448899;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .right{
@@ -46,6 +58,175 @@
     flex: none;
     margin-right: 10px;
 }
+
+.sign-in::before{
+    position: absolute; 
+    top: 0px;
+    content: ""; 
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border: 0px none;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.sign-in{
+    /* display: flex; */
+    display: none;
+    z-index: 999;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 340px;
+    height: 275px;
+    background-color: #ffffff;
+    border: 0px none;
+    border-radius: 5px;
+}
+
+.sign-in-bar{
+    display: flex;
+}
+
+.close-button{
+    position: static;
+    z-index: 999;
+    width: 16px;
+    height: 16px;
+    flex: none;
+    justify-content: end;
+    margin-top: 23px;
+    margin-right: 15px;
+}
+
+.sign-in-title{
+    flex: auto;
+    margin-top: 20px;
+    margin-left: 31px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #757575;
+    text-align: center;
+    justify-content: center;
+}
+
+.sign-in-form{
+    /* flex: none; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-input{
+    width: 291px;
+    height: 47px;
+    margin: 5px 0px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.sign-in-button{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    border: #448899;
+    color: #ffffff;
+    margin: 5px 0px;
+}
+
+.sign-in-content{
+    color: #666666;
+    margin: 5px 0px;
+}
+.register::before{
+    position: absolute; 
+    top: 0px;
+    content: ""; 
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border: 0px none;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.register{
+    display: none;
+    z-index: 999;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 340px;
+    height: 332px;
+    background-color: #ffffff;
+    border: 0px none;
+    border-radius: 5px;
+}
+
+.register-bar{
+    display: flex;
+}
+
+.close-button{
+    position: static;
+    z-index: 999;
+    width: 16px;
+    height: 16px;
+    flex: none;
+    justify-content: end;
+    margin-top: 23px;
+    margin-right: 15px;
+}
+
+.register-title{
+    flex: auto;
+    margin-top: 20px;
+    margin-left: 31px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #757575;
+    text-align: center;
+    justify-content: center;
+}
+
+.register-form{
+    /* flex: none; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-input{
+    width: 291px;
+    height: 47px;
+    margin: 5px 0px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.register-button{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    border: #448899;
+    color: #ffffff;
+    margin: 5px 0px;
+}
+
+.register-content{
+    color: #666666;
+    margin: 5px 0px;
+}
+
 
 .wrapper{
     position: relative;
@@ -173,7 +354,7 @@
     padding-left: 8px;
 }
 .input [type="date"]{
-    
+
 }
 ::-webkit-calendar-picker-indicator{
     padding-right: 15px;

@@ -7,14 +7,40 @@
         <link rel="stylesheet" type="text/css" href="/css/attraction.css">
     </head>
     <body class="body">
+        <div class="hide-bg"></div>
         <div class="header_bg">
             <div class="header">
-                <div class="title">台北一日遊</div>
+                <a class="title" href="/">台北一日遊</a>
                 <div class="right">
                     <div class="func">預定行程</div>
-                    <div class="func">登入/註冊</div>
+                    <div class="func" onclick="sign()" style="cursor: pointer;">登入/註冊</div>
                 </div>
-            </div>    
+            </div>  
+            <div class="sign-in">
+            <div class="sign-in-bar">
+                <div class="sign-in-title">登入會員帳號</div>
+                <img src="/image/icon_close.png" class="close-button" style="cursor: pointer;" onclick="userClose()">
+            </div>
+            <div class="sign-in-form" id="sign-in-form">
+                <input type="text" placeholder="輸入電子信箱" class="user-input" id="signInEmail">
+                <input type="password" placeholder="輸入密碼" class="user-input" id="signInPassword">
+                <button class="sign-in-button" onclick="signIn();" style="cursor: pointer;">登入帳戶</button>
+                <div class="sign-in-content" onclick="toRegister();" style="cursor: pointer;">還沒有帳戶？點此註冊</div>
+            </div>
+            </div>
+            <div class="register">
+                <div class="register-bar">
+                    <div class="register-title">註冊會員帳號</div>
+                    <img src="/image/icon_close.png" class="close-button" style="cursor: pointer;" onclick="userClose()">
+                </div>
+                <div class="register-form" id="register-form">
+                    <input type="text" placeholder="輸入姓名" class="user-input" id="registerName">
+                    <input type="text" placeholder="輸入電子信箱" class="user-input" id="registerEmail">
+                    <input type="password" placeholder="輸入密碼" class="user-input" id="registerPassword">
+                    <button class="register-button" onclick="register();" style="cursor: pointer;">註冊新帳戶</button>
+                    <div class="register-content" onclick="toSignIn();" style="cursor: pointer;">已經有帳戶了？點此登入</div>
+                </div>
+            </div>  
         </div>
         <div class="wrapper" id="wrapper">
             <div class="img-container" id="img-container" >
