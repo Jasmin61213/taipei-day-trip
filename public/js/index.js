@@ -260,7 +260,7 @@ function signIn(){
             body.style.overflow = "auto"
         };
         if (res.error == true) {
-            alert("登入失敗");
+            alert(res.message);
         };          
     });
 };
@@ -294,7 +294,7 @@ function register(){
             registerContent.style.display = "none";
         };
         if (res.error == true) {
-            alert("註冊失敗");
+            alert(res.message);
         };          
     });
 };

@@ -196,10 +196,10 @@ def api_user_auth():
 			value = (email,)
 			cursor.execute(user_select,value)
 			user = cursor.fetchone()
-			hash_password = user["password"]
 			if user == None:
-				return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
+				return make_response(jsonify({"error":True,"message":"沒有此帳號，請重新輸入"}),400)
 			else:
+				hash_password = user["password"]
 				check_password = bcrypt.check_password_hash(hash_password, password)
 				if check_password == True:
 					token = jwt.encode(user, "secret", algorithm="HS256")
@@ -207,7 +207,7 @@ def api_user_auth():
 					res.set_cookie('token',token,max_age=604800)
 					return res
 				else:
-					return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
+					return make_response(jsonify({"error":True,"message":"密碼輸入錯誤"}),400)
 		except:
 			return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
 		finally:
