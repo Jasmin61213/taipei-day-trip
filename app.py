@@ -1,9 +1,10 @@
-import email
-from http.cookiejar import Cookie
 from flask import *
 from flask_restful import Api, Resource
 from flask import make_response
 import jwt
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt()
 
 app=Flask(
     __name__,
@@ -16,6 +17,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.config["secret"] = "this-is-secret-key"
 
 api=Api(app)
+
 # connection pool
 import mysql.connector.pooling
 dbconfig={
@@ -139,6 +141,7 @@ def api_user():
 	name = user_content["name"]
 	email = user_content["email"]
 	password = user_content["password"]
+	hash_password = bcrypt.generate_password_hash(password).decode("utf-8")
 	try:
 		connection_object = connection_pool.get_connection()
 		cursor = connection_object.cursor(dictionary=True)
@@ -151,7 +154,7 @@ def api_user():
 			return make_response(jsonify({"error":True,"message":"註冊失敗"}),400)
 		else:
 			user = "INSERT INTO user(name,email,password) VALUES (%s,%s,%s)"
-			value = (name,email,password)
+			value = (name,email,hash_password)
 			cursor.execute(user,value)
 			connection_object.commit()
 			return make_response(jsonify({"ok":True}),200)
@@ -172,16 +175,16 @@ def api_user_auth():
 		# if 有JWT 有登入	
 		else:
 			user = jwt.decode(token, "secret", algorithms=["HS256"])
-			# id = user["id"]
-			# connection_object = connection_pool.get_connection()
-			# cursor = connection_object.cursor(dictionary=True)
-			# user_select = "SELECT id,name,email FROM user WHERE id=%s"
-			# value = (id,)
-			# cursor.execute(user_select,value)
-			# data = cursor.fetchone()
-			# cursor.close()
-			# connection_object.close()
-			return make_response(jsonify({"data":user}),200)
+			id = user["id"]
+			connection_object = connection_pool.get_connection()
+			cursor = connection_object.cursor(dictionary=True)
+			user_select = "SELECT id,name,email FROM user WHERE id=%s"
+			value = (id,)
+			cursor.execute(user_select,value)
+			data = cursor.fetchone()
+			cursor.close()
+			connection_object.close()
+			return make_response(jsonify({"data":data}),200)
 	if request.method=="PUT":
 		try:
 			user_content = request.get_json()
@@ -189,17 +192,22 @@ def api_user_auth():
 			password = user_content["password"]
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor(dictionary=True)
-			user_select = "SELECT id,name,email FROM user WHERE email=%s AND password=%s"
-			value = (email,password)
+			user_select = "SELECT password FROM user WHERE email=%s"
+			value = (email,)
 			cursor.execute(user_select,value)
 			user = cursor.fetchone()
+			hash_password = user["password"]
 			if user == None:
 				return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
 			else:
-				token = jwt.encode(user, "secret", algorithm="HS256")
-				res = make_response(jsonify({"ok":True}),200)
-				res.set_cookie('token',token,max_age=604800)
-				return res
+				check_password = bcrypt.check_password_hash(hash_password, password)
+				if check_password == True:
+					token = jwt.encode(user, "secret", algorithm="HS256")
+					res = make_response(jsonify({"ok":True}),200)
+					res.set_cookie('token',token,max_age=604800)
+					return res
+				else:
+					return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
 		except:
 			return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
 		finally:
