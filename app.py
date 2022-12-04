@@ -1,6 +1,4 @@
-import email
 from http.cookiejar import Cookie
-import re
 from flask import *
 from flask_restful import Api, Resource
 from flask import make_response
@@ -172,25 +170,23 @@ def api_user_auth():
 		# if 有JWT 有登入	
 		else:
 			user = jwt.decode(token, "secret", algorithms=["HS256"])
-			id = user["id"]
-			connection_object = connection_pool.get_connection()
-			cursor = connection_object.cursor(dictionary=True)
-			user_select = "SELECT id,name,email FROM user WHERE id=%s"
-			value = (id,)
-			cursor.execute(user_select,value)
-			data = cursor.fetchone()
-			cursor.close()
-			connection_object.close()
-			return make_response(jsonify({"data":data}),200)
+			# id = user["id"]
+			# connection_object = connection_pool.get_connection()
+			# cursor = connection_object.cursor(dictionary=True)
+			# user_select = "SELECT id,name,email FROM user WHERE id=%s"
+			# value = (id,)
+			# cursor.execute(user_select,value)
+			# data = cursor.fetchone()
+			# cursor.close()
+			# connection_object.close()
+			return make_response(jsonify({"data":user}),200)
 	if request.method=="PUT":
 		try:
-			# email=request.form["email"]
-			# password=request.form["password"]
-			email="jasmin@gmail.com"
-			password="1213"
+			email=request.form["email"]
+			password=request.form["password"]
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor(dictionary=True)
-			user_select = "SELECT * FROM user WHERE email=%s AND password=%s"
+			user_select = "SELECT id,name,email FROM user WHERE email=%s AND password=%s"
 			value = (email,password)
 			cursor.execute(user_select,value)
 			user = cursor.fetchone()
