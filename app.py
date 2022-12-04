@@ -1,6 +1,10 @@
-from unicodedata import category
+import email
+from http.cookiejar import Cookie
+import re
 from flask import *
 from flask_restful import Api, Resource
+from flask import make_response
+import jwt
 
 app=Flask(
     __name__,
@@ -10,9 +14,11 @@ app=Flask(
 
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
-api=Api(app)
-import mysql.connector.pooling
 
+api=Api(app)
+
+# connection pool
+import mysql.connector.pooling
 dbconfig={
 	"host":"127.0.0.1",
 	"user":"root",
@@ -127,5 +133,82 @@ def api_categories():
 	finally:
 		cursor.close()
 		connection_object.close()
+
+@app.route("/api/user",methods=["POST"])
+def api_user():
+	name=request.form["name"]
+	email=request.form["email"]
+	password=request.form["password"]
+	try:
+		connection_object = connection_pool.get_connection()
+		cursor = connection_object.cursor(dictionary=True)
+		email_select = "SELECT * FROM user WHERE email=%s"
+		value = (email,)
+		cursor.execute(email_select,value)
+		result = cursor.fetchone()
+		print(result)
+		if result != None:
+			return make_response(jsonify({"error":True,"message":"註冊失敗"}),400)
+		else:
+			user = "INSERT INTO user(name,email,password) VALUES (%s,%s,%s)"
+			value = (name,email,password)
+			cursor.execute(user,value)
+			connection_object.commit()
+			return make_response(jsonify({"ok":True}),200)
+	except:
+		return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
+	finally:
+		cursor.close()
+		connection_object.close()
+
+@app.route("/api/user/auth",methods=["GET","PUT","DELETE"])
+def api_user_auth():
+	if request.method=="GET":
+		# 從cookie抓jwt
+		token = request.cookies.get('token')
+		# if 沒有JWT 沒有登入
+		if token == None:
+			return make_response(jsonify({"data":None}),200)
+		# if 有JWT 有登入	
+		else:
+			user = jwt.decode(token, "secret", algorithms=["HS256"])
+			id = user["id"]
+			connection_object = connection_pool.get_connection()
+			cursor = connection_object.cursor(dictionary=True)
+			user_select = "SELECT id,name,email FROM user WHERE id=%s"
+			value = (id,)
+			cursor.execute(user_select,value)
+			data = cursor.fetchone()
+			cursor.close()
+			connection_object.close()
+			return make_response(jsonify({"data":data}),200)
+	if request.method=="PUT":
+		try:
+			# email=request.form["email"]
+			# password=request.form["password"]
+			email="jasmin@gmail.com"
+			password="1213"
+			connection_object = connection_pool.get_connection()
+			cursor = connection_object.cursor(dictionary=True)
+			user_select = "SELECT * FROM user WHERE email=%s AND password=%s"
+			value = (email,password)
+			cursor.execute(user_select,value)
+			user = cursor.fetchone()
+			if user != []:
+				token = jwt.encode(user, "secret", algorithm="HS256")
+				res = make_response(jsonify({"ok":True}),200)
+				res.set_cookie('token',token,max_age=604800)
+				return res
+			else:
+				return make_response(jsonify({"error":True,"message":"帳號密碼輸入錯誤"}),400)
+		except:
+			return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
+		finally:
+			cursor.close()
+			connection_object.close()
+	if request.method=="DELETE":
+		res = make_response(jsonify({"ok":True}),200)
+		res.delete_cookie('token')
+		return res
 
 app.run(host="0.0.0.0",port=3000)
