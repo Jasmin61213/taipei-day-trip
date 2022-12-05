@@ -139,10 +139,17 @@
     margin: 5px 0px;
 }
 
+.sign-alert{
+    text-align:center;
+    width: 310px;
+    color: red;
+}
+
 .sign-in-content{
     color: #666666;
     margin: 5px 0px;
 }
+
 .register::before{
     position: absolute; 
     top: 0px;
@@ -222,11 +229,16 @@
     margin: 5px 0px;
 }
 
+.register-alert{
+    text-align:center;
+    width: 310px;
+    color: red;
+}
+
 .register-content{
     color: #666666;
     margin: 5px 0px;
 }
-
 
 .wrapper{
     position: relative;

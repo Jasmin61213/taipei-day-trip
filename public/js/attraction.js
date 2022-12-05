@@ -1,4 +1,21 @@
-let url=window.location.pathname
+const url=window.location.pathname
+
+//驗證是否登入
+fetch("/api/user/auth",{
+    method: "GET"
+})
+.then(function(response){
+    return response.json();
+})
+.then(function(data){
+    let signUp = document.getElementById("func");
+    if (data.data != null){
+        signUp.setAttribute("onclick","signup()")
+        signUp.textContent = "登出系統"
+    }else{
+        signUp.textContent = "登入/註冊"
+    };
+});
 
 //載入景點頁面
 fetch("/api"+url)
@@ -73,7 +90,7 @@ function check(){
 };
 
 //img輪播
-let current = 0;
+const current = 0;
 
 //左右鍵輪播
 function slide(n){
@@ -102,10 +119,11 @@ function showImg(n){
 };
 
 //註冊＆登入
-let signInContent = document.querySelector(".sign-in");
-let registerContent = document.querySelector(".register");
-let hideBg=document.querySelector(".hide-bg");
-let body = document.querySelector(".body");
+const signInContent = document.querySelector(".sign-in");
+const registerContent = document.querySelector(".register");
+const hideBg=document.querySelector(".hide-bg");
+const body = document.querySelector(".body");
+
 //打開登入頁面
 function sign(){
     signInContent.style.display = "block";
@@ -134,19 +152,19 @@ function toSignIn(){
 
 //登入會員
 function signIn(){
-    email = document.getElementById("signInEmail").value;
-    password = document.getElementById("signInPassword").value;
+    let signInEmail = document.getElementById("signInEmail").value;
+    let signInPassword = document.getElementById("signInPassword").value;
     data = {
-        "email":email,
-        "password":password
+        "email" : signInEmail,
+        "password" : signInPassword
     };
     fetch("/api/user/auth",{
         method: "PUT",
         body: JSON.stringify(data),
         cache: "no-cache",
         headers:{
-            "Accept":"application/json",
-            "Content-Type":"application/json"
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
         }  
     })
     .then(function(response){
@@ -154,47 +172,63 @@ function signIn(){
     })
     .then(function(res){
         if (res.ok == true) {
-            alert("登入成功");
-            signInContent.style.display = "none";
-            hideBg.style.display="none";
-            body.style.overflow = "auto"
+            window.location.reload();
         };
         if (res.error == true) {
-            alert("登入失敗");
+            let signAlert = document.querySelector(".sign-alert")
+            let sign = document.querySelector(".sign-in")
+            sign.style.height = "298px"
+            signAlert.textContent = res.message;
         };          
     });
 };
 
 //註冊會員
 function register(){
-    userName= document.getElementById("registerName").value;
-    email = document.getElementById("registerEmail").value;
-    password = document.getElementById("registerPassword").value;
+    let registerName = document.getElementById("registerName").value;
+    let registerEmail = document.getElementById("registerEmail").value;
+    let registerPassword = document.getElementById("registerPassword").value;
     data = {
-        "name":userName,
-        "email":email,
-        "password":password
+        "name" : registerName,
+        "email" : registerEmail,
+        "password" : registerPassword
     };
     fetch("/api/user",{
         method: "POST",
         body: JSON.stringify(data),
         cache: "no-cache",
         headers:{
-            "Accept":"application/json",
-            "Content-Type":"application/json"
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
         }  
     })
     .then(function(response){
         return response.json();
     })
     .then(function(res){
+        let registerAlert = document.querySelector(".register-alert")
+        let register = document.querySelector(".register")
+        register.style.height = "360px"
         if (res.ok == true) {
-            alert("註冊成功");
-            signInContent.style.display = "block";
-            registerContent.style.display = "none";
+            registerAlert.textContent = "註冊成功，請登入頁面"
         };
         if (res.error == true) {
-            alert("註冊失敗");
+            registerAlert.textContent = res.message;
         };          
+    });
+};
+
+//登出系統
+function signup(){
+    fetch("/api/user/auth",{
+        method: "DELETE"
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(res){
+        if (res.ok == true) {
+            window.location.reload();
+        };
     });
 };

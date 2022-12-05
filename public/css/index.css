@@ -136,6 +136,12 @@
     margin: 5px 0px;
 }
 
+.sign-alert{
+    text-align:center;
+    width: 310px;
+    color: red;
+}
+
 .sign-in-content{
     color: #666666;
     margin: 5px 0px;
@@ -217,6 +223,12 @@
     border: #448899;
     color: #ffffff;
     margin: 5px 0px;
+}
+
+.register-alert{
+    text-align:center;
+    width: 310px;
+    color: red;
 }
 
 .register-content{
