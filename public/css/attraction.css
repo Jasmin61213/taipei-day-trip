@@ -55,6 +55,7 @@
 }
 
 .func{
+    cursor: pointer;
     flex: none;
     margin-right: 10px;
 }
@@ -71,7 +72,6 @@
 }
 
 .sign-in{
-    /* display: flex; */
     display: none;
     z-index: 999;
     top: 80px;
@@ -112,7 +112,6 @@
 }
 
 .sign-in-form{
-    /* flex: none; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -130,6 +129,7 @@
 }
 
 .sign-in-button{
+    cursor: pointer;
     width: 310px;
     height: 47px;
     background: #448899;
@@ -146,6 +146,7 @@
 }
 
 .sign-in-content{
+    cursor: pointer;
     color: #666666;
     margin: 5px 0px;
 }
@@ -180,6 +181,7 @@
 }
 
 .close-button{
+    cursor: pointer;
     position: static;
     z-index: 999;
     width: 16px;
@@ -202,7 +204,6 @@
 }
 
 .register-form{
-    /* flex: none; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -220,6 +221,7 @@
 }
 
 .register-button{
+    cursor: pointer;
     width: 310px;
     height: 47px;
     background: #448899;
@@ -236,6 +238,7 @@
 }
 
 .register-content{
+    cursor: pointer;
     color: #666666;
     margin: 5px 0px;
 }
@@ -265,6 +268,7 @@
 }
 
 .prev{
+    cursor: pointer;
     position: absolute;
     z-index: 20;
     top: 185px;
@@ -274,6 +278,7 @@
 }
 
 .next{
+    cursor: pointer;
     position: absolute;
     z-index: 20;
     top: 185px;
@@ -358,6 +363,7 @@
 }
 
 .date{
+    cursor: pointer;
     position: absolute;
     top: 91px;left: 106px;
     background-color: #ffffff;
@@ -366,7 +372,7 @@
     padding-left: 8px;
 }
 .input [type="date"]{
-
+    cursor: pointer;
 }
 ::-webkit-calendar-picker-indicator{
     padding-right: 15px;
@@ -396,6 +402,7 @@
 }
 
 input[type="radio"]{
+    cursor: pointer;
     width: 18px;
     height: 18px;
     accent-color: #448899;
@@ -428,6 +435,7 @@ input[type="radio"]{
 }
 
 .reserve-button{
+    cursor: pointer;
     position: absolute;
     top: 237px;
     left: 20px;

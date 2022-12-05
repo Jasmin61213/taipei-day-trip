@@ -219,14 +219,16 @@ document.addEventListener("click",function(){
 });
 
 //註冊＆登入
-const signInContent = document.querySelector(".sign-in");
-const registerContent = document.querySelector(".register");
+const signInMenu = document.querySelector(".sign-in");
+const registerMenu = document.querySelector(".register");
 const hideBg=document.querySelector(".hide-bg");
 const body = document.querySelector(".body");
+const signAlert = document.querySelector(".sign-alert")
+const registerAlert = document.querySelector(".register-alert")
 
 //打開登入頁面
 function sign(){
-    signInContent.style.display = "block";
+    signInMenu.style.display = "block";
     hideBg.style.display="block";
     hideBg.style.height=document.body.clientHeight+"px"; 
     body.style.overflow = "hidden"
@@ -234,20 +236,24 @@ function sign(){
 
 //關掉視窗
 function userClose(){
-    signInContent.style.display = "none";
-    registerContent.style.display = "none";
+    signInMenu.style.display = "none";
+    registerMenu.style.display = "none";
+    signInMenu.style.height = "275px"
+    registerMenu.style.height = "340px"
+    signAlert.textContent = "";
+    registerAlert.textContent = "";    
     hideBg.style.display="none";
-    body.style.overflow = "auto"
+    body.style.overflow = "auto";
 };
 
 //切換視窗
 function toRegister(){
-    signInContent.style.display = "none";
-    registerContent.style.display = "block";
+    signInMenu.style.display = "none";
+    registerMenu.style.display = "block";
 };
 function toSignIn(){
-    signInContent.style.display = "block";
-    registerContent.style.display = "none";
+    signInMenu.style.display = "block";
+    registerMenu.style.display = "none";
 };
 
 //登入會員
@@ -272,12 +278,11 @@ function signIn(){
     })
     .then(function(res){
         if (res.ok == true) {
+            alert("登入成功")
             window.location.reload();
         };
         if (res.error == true) {
-            let signAlert = document.querySelector(".sign-alert")
-            let sign = document.querySelector(".sign-in")
-            sign.style.height = "298px"
+            signInMenu.style.height = "298px"
             signAlert.textContent = res.message;
         };          
     });
@@ -306,11 +311,11 @@ function register(){
         return response.json();
     })
     .then(function(res){
-        let registerAlert = document.querySelector(".register-alert")
-        let register = document.querySelector(".register")
-        register.style.height = "360px"
+        let registerContent = document.querySelector(".register-content")
+        registerMenu.style.height = "355px"
         if (res.ok == true) {
             registerAlert.textContent = "註冊成功，請登入頁面"
+            registerContent.textContent = "點此登入"
         };
         if (res.error == true) {
             registerAlert.textContent = res.message;
@@ -328,6 +333,7 @@ function signup(){
     })
     .then(function(res){
         if (res.ok == true) {
+            alert("已登出")
             window.location.reload();
         };
     });
