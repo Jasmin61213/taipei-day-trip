@@ -333,7 +333,7 @@ function signup(){
     })
     .then(function(res){
         if (res.ok == true) {
-            alert("已登出")
+            alert("已登出會員")
             window.location.reload();
         };
     });
