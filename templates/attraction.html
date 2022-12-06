@@ -1,87 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta charset="utf-8">
-        <title>台北一日遊</title>
-        <link rel="stylesheet" type="text/css" href="/css/attraction.css">
-    </head>
-    <body class="body">
-        <div class="hide-bg" onclick="userClose()"></div>
-        <div class="header_bg">
-            <div class="header">
-                <a class="title" href="/">台北一日遊</a>
-                <div class="right">
-                    <div class="func">預定行程</div>
-                    <div class="func" onclick="sign()" id="func"></div>
-                </div>
-            </div>  
-            <div class="sign-in">
-                <div class="sign-in-bar">
-                    <div class="sign-in-title">登入會員帳號</div>
-                    <img src="/image/icon_close.png" class="close-button" onclick="userClose()">
-                </div>
-                <div class="sign-in-form" id="sign-in-form">
-                    <input type="text" placeholder="輸入電子信箱" class="user-input" id="signInEmail">
-                    <input type="password" placeholder="輸入密碼" class="user-input" id="signInPassword">
-                    <button class="sign-in-button" onclick="signIn();">登入帳戶</button>
-                    <div class="sign-alert"></div>
-                    <div class="sign-in-content" onclick="toRegister();">還沒有帳戶？點此註冊</div>
-                </div>
-            </div>
-            <div class="register">
-                <div class="register-bar">
-                    <div class="register-title">註冊會員帳號</div>
-                    <img src="/image/icon_close.png" class="close-button" style="cursor: pointer;" onclick="userClose()">
-                </div>
-                <div class="register-form" id="register-form">
-                    <input type="text" placeholder="輸入姓名" class="user-input" id="registerName">
-                    <input type="text" placeholder="輸入電子信箱" class="user-input" id="registerEmail">
-                    <input type="password" placeholder="輸入密碼" class="user-input" id="registerPassword">
-                    <button class="register-button" onclick="register();" style="cursor: pointer;">註冊新帳戶</button>
-                    <div class="register-alert"></div>
-                    <div class="register-content" onclick="toSignIn();" style="cursor: pointer;">已經有帳戶了？點此登入</div>
-                </div>
-            </div>  
+{% extends 'index.html' %}
+
+{% block title %}
+<title>台北一日遊</title>
+<link rel="stylesheet" type="text/css" href="/css/attraction.css">
+{% endblock %}
+
+{% block content %}
+<div class="wrapper" id="wrapper">
+    <div class="img-container" id="img-container" >
+        <a class="prev" onclick="slide(-1)"><img src="/image/btn_leftArrow.png"></a>
+        <a class="next" onclick="slide(1)"><img src="/image/btn_rightArrow.png"></a>
+        <div class="dot-content" id="dot-content">
         </div>
-        <div class="wrapper" id="wrapper">
-            <div class="img-container" id="img-container" >
-                <a class="prev" onclick="slide(-1)"><img src="/image/btn_leftArrow.png"></a>
-                <a class="next" onclick="slide(1)"><img src="/image/btn_rightArrow.png"></a>
-                <div class="dot-content" id="dot-content">
-                </div>
-            </div>
-            <div class="img-content" id="img-content">
-                <div class="name"></div>
-                <div class="cat-mrt"></div>
-                <div class="reserve">
-                    <div class="reserve-title">訂購導覽行程</div>
-                    <div class="reserve-content">以此景點為中心的一日行程，帶您探索城市角落故事</div>
-                    <div class="reserve-date">選擇日期：</div>
-                    <input class="date" type="date">
-                    <div class="reserve-time">選擇時間：</div>
-                    <form class="radio" onclick="check()">
-                        <input value="first-half-day" id="first-half-day" type="radio" name="reserve" checked>
-                        <label for="first-half-day" class="radio-label">上半天</label>
-                        <input value="second-half-day" id="second-half-day" type="radio" name="reserve">
-                        <label for="second-half-day" >下半天</label>
-                    </form>                    
-                    <div class="reserve-fee">導覽費用：</div>
-                    <div class="reserve-fee1">新台幣：2000元</div>
-                    <div class="reserve-fee2">新台幣：2500元</div>
-                    <button class="reserve-button">開始預約行程</button>
-                </div>
-            </div>
-            <hr class="hr">
-        </div>    
-        <div class="wrapper-content" id="wrapper-content">
-            <div class="describe"></div>
-            <div class="address-title">景點地址：</div>
-            <div class="address"></div>
-            <div class="transport-title">交通方式：</div>
-            <div class="transport"></div>
+    </div>
+    <div class="img-content" id="img-content">
+        <div class="name"></div>
+        <div class="cat-mrt"></div>
+        <div class="reserve">
+            <div class="reserve-title">訂購導覽行程</div>
+            <div class="reserve-content">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+            <div class="reserve-date">選擇日期：</div>
+            <input class="date" type="date">
+            <div class="reserve-time">選擇時間：</div>
+            <form class="radio" onclick="check()">
+                <input value="first-half-day" id="first-half-day" type="radio" name="reserve" checked>
+                <label for="first-half-day" class="radio-label">上半天</label>
+                <input value="second-half-day" id="second-half-day" type="radio" name="reserve">
+                <label for="second-half-day" >下半天</label>
+            </form>                    
+            <div class="reserve-fee">導覽費用：</div>
+            <div class="reserve-fee1">新台幣：2000元</div>
+            <div class="reserve-fee2">新台幣：2500元</div>
+            <button class="reserve-button">開始預約行程</button>
         </div>
-    </body>
-    <footer class="footer">COPYRIGHT © 2022 台北一日遊</footer>
-    <script type="text/javascript" src="/js/attraction.js"></script>
-</html>
+    </div>
+    <hr class="hr">
+</div>    
+<div class="wrapper-content" id="wrapper-content">
+    <div class="describe"></div>
+    <div class="address-title">景點地址：</div>
+    <div class="address"></div>
+    <div class="transport-title">交通方式：</div>
+    <div class="transport"></div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/js/attraction.js"></script>
+{% endblock %}

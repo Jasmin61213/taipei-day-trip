@@ -102,4 +102,3 @@ def api_user_auth():
 		res = make_response(jsonify({"ok":True}),200)
 		res.delete_cookie('token')
 		return res
-

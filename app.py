@@ -12,7 +12,6 @@ app=Flask(
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-
 # Pages
 @app.route("/")
 def index():
