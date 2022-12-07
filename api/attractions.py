@@ -1,34 +1,19 @@
 from flask import *
 from flask import Blueprint
 from flask import make_response
+import model.database
  
-attractions = Blueprint('attractions',
+attractions_api = Blueprint('attractions_api',
                    __name__,
                    static_folder='static',
                    template_folder='templates')
-
-# connection pool
-import mysql.connector.pooling
-dbconfig={
-	"host":"127.0.0.1",
-	"user":"root",
-	"password":"12131213",
-	"database":"taipeiattraction"
-}
-
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name = "taipei_attraction_pool",
-    pool_size = 5,
-    pool_reset_session = True,
-    **dbconfig
-)
  
-@attractions.route("/api/attractions")
+@attractions_api.route("/api/attractions")
 def api_attractions():
 	try:
 		page = int(request.args.get("page"))
 		keyword = request.args.get("keyword",None)
-		connection_object = connection_pool.get_connection()
+		connection_object = model.database.dbconnect().get_connection()
 		cursor = connection_object.cursor(dictionary=True)
 		page_select = page*12
 		next_page_select = (page+1)*12
@@ -69,10 +54,10 @@ def api_attractions():
 		cursor.close()
 		connection_object.close()
 
-@attractions.route("/api/attraction/<id>")
+@attractions_api.route("/api/attraction/<id>")
 def api_attraction_id(id):
 	try:
-		connection_object = connection_pool.get_connection()
+		connection_object = model.database.dbconnect().get_connection()
 		cursor = connection_object.cursor(dictionary=True)
 		data_select = "SELECT * FROM attraction WHERE id=%s"
 		value = (id,)

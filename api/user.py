@@ -1,33 +1,18 @@
 from flask import *
 from flask import Blueprint
 from flask import make_response
-import jwt
 from flask_bcrypt import Bcrypt
+import jwt
+import model.database
  
 bcrypt = Bcrypt()
 
-user = Blueprint('user',
+user_api = Blueprint('user_api',
                    __name__,
                    static_folder='static',
                    template_folder='templates')
 
-# connection pool
-import mysql.connector.pooling
-dbconfig={
-	"host":"127.0.0.1",
-	"user":"root",
-	"password":"12131213",
-	"database":"taipeiattraction"
-}
-
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name = "taipei_attraction_pool",
-    pool_size = 5,
-    pool_reset_session = True,
-    **dbconfig
-)
-
-@user.route("/api/user",methods=["POST"])
+@user_api.route("/api/user",methods=["POST"])
 def api_user():
 	user_content = request.get_json()
 	name = user_content["name"]
@@ -35,7 +20,7 @@ def api_user():
 	password = user_content["password"]
 	hash_password = bcrypt.generate_password_hash(password).decode("utf-8")
 	try:
-		connection_object = connection_pool.get_connection()
+		connection_object = model.database.dbconnect().get_connection()
 		cursor = connection_object.cursor(dictionary=True)
 		email_select = "SELECT * FROM user WHERE email=%s"
 		value = (email,)
@@ -55,7 +40,7 @@ def api_user():
 		cursor.close()
 		connection_object.close()
 
-@user.route("/api/user/auth",methods=["GET","PUT","DELETE"])
+@user_api.route("/api/user/auth",methods=["GET","PUT","DELETE"])
 def api_user_auth():
 	if request.method=="GET":
 		token = request.cookies.get('token')
@@ -70,7 +55,7 @@ def api_user_auth():
 			user_content = request.get_json()
 			email = user_content["email"]
 			put_password = user_content["password"]
-			connection_object = connection_pool.get_connection()
+			connection_object = model.database.dbconnect().get_connection()
 			cursor = connection_object.cursor(dictionary=True)
 			user_select = "SELECT id,name,email FROM user WHERE email=%s"
 			value = (email,)

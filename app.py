@@ -1,7 +1,7 @@
 from flask import *
-from api.attractions import attractions
-from api.categories import categories
-from api.user import user
+from api.attractions import attractions_api
+from api.categories import categories_api
+from api.user import user_api
 
 app=Flask(
     __name__,
@@ -26,8 +26,8 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.register_blueprint(attractions, url_prefix='')
-app.register_blueprint(categories, url_prefix='')
-app.register_blueprint(user, url_prefix='')
+app.register_blueprint(attractions_api, url_prefix='')
+app.register_blueprint(categories_api, url_prefix='')
+app.register_blueprint(user_api, url_prefix='')
 
 app.run(host="0.0.0.0",port=3000,debug=True)
