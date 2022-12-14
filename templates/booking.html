@@ -6,6 +6,36 @@
 {% endblock %}
 
 {% block content %}
+<div class="change">
+    <div class="content_title_hello"></div>
+    <div class="content">
+        <div class="box">
+            <img id="img">
+            <div class="box_text">
+                <img src="/image/icon_delete.png" class="delete" onclick="deleteReserve();">
+                <div class="content_text_title">台北一日遊：<span class="content_text_title" id="taipei_title"></span></div>
+                <div class="content_text">日期：<span class="text" id="date"></span></div>
+                <div class="content_text">時間：<span class="text" id="time"></span></div>
+                <div class="content_text">費用：<span class="text" id="price"></span></div>
+                <div class="content_text">地點：<span class="text" id="address"></span></div>   
+            </div>
+        </div>
+    <hr>
+        <div class="content_title">您的聯絡資訊</div>
+        <div>聯絡姓名： <input type="text" class="input"></div>
+        <div>聯絡信箱： <input type="text" class="input"></div>
+        <div>手機號碼： <input type="text" class="input"></div>
+        <div class="content_text">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+        <hr>
+        <div class="content_title">信用卡付款資訊</div>
+        <div>卡片號碼： <input type="text" class="input" placeholder="**** **** ****" maxlength="12"></div>
+        <div>過期時間： <input type="text" class="input" placeholder="MM/YY"></div>
+        <div>驗證密碼： <input type="text" class="input" placeholder="CVV" maxlength="3"></div>
+        <hr>
+        <div class="content_text right" id="fee">總價：新台幣 2000 元</div>
+        <button>確認訂購並付款</button>
+    </div>
+</div>
 
 {% endblock %}
 

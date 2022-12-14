@@ -6,7 +6,7 @@ fetch("/api/user/auth",{
     return response.json();
 })
 .then(function(data){
-    let signUp = document.getElementById("func");
+    const signUp = document.getElementById("func");
     if (data.data != null){
         signUp.setAttribute("onclick","signup()")
         signUp.textContent = "登出系統"
@@ -22,6 +22,13 @@ const hideBg=document.querySelector(".hide-bg");
 const body = document.querySelector(".body");
 const signAlert = document.querySelector(".sign-alert")
 const registerAlert = document.querySelector(".register-alert")
+const remind = document.querySelector(".remind")
+const textRemind = document.querySelector(".text-remind")
+
+//重整頁面
+function reload(){
+    window.location.reload();
+}
 
 //打開登入頁面
 function sign(){
@@ -31,10 +38,20 @@ function sign(){
     body.style.overflow = "hidden"
 };
 
-//關掉視窗
+//打開提醒框
+function showRemind(message){
+    remind.style.display = "block"
+    textRemind.textContent = message
+    hideBg.style.display="block";
+    hideBg.style.height=document.body.clientHeight+"px"; 
+    body.style.overflow = "hidden"
+}
+
+//關掉會員視窗
 function userClose(){
     signInMenu.style.display = "none";
     registerMenu.style.display = "none";
+    remind.style.display = "none"
     signInMenu.style.height = "275px"
     registerMenu.style.height = "340px"
     signAlert.textContent = "";
@@ -43,7 +60,7 @@ function userClose(){
     body.style.overflow = "auto";
 };
 
-//切換視窗
+//切換會員視窗
 function toRegister(){
     signInMenu.style.display = "none";
     registerMenu.style.display = "block";
@@ -55,8 +72,8 @@ function toSignIn(){
 
 //登入會員
 function signIn(){
-    let signInEmail = document.getElementById("signInEmail").value;
-    let signInPassword = document.getElementById("signInPassword").value;
+    const signInEmail = document.getElementById("signInEmail").value;
+    const signInPassword = document.getElementById("signInPassword").value;
     data = {
         "email" : signInEmail,
         "password" : signInPassword
@@ -75,7 +92,10 @@ function signIn(){
     })
     .then(function(res){
         if (res.ok == true) {
-            window.location.reload();
+            signInMenu.style.display = "none";
+            let message = "登入成功"
+            showRemind(message)
+            setTimeout(reload, 1000);
         };
         if (res.error == true) {
             signInMenu.style.height = "298px"
@@ -86,9 +106,9 @@ function signIn(){
 
 //註冊會員
 function register(){
-    let registerName = document.getElementById("registerName").value;
-    let registerEmail = document.getElementById("registerEmail").value;
-    let registerPassword = document.getElementById("registerPassword").value;
+    const registerName = document.getElementById("registerName").value;
+    const registerEmail = document.getElementById("registerEmail").value;
+    const registerPassword = document.getElementById("registerPassword").value;
     data = {
         "name" : registerName,
         "email" : registerEmail,
@@ -107,7 +127,7 @@ function register(){
         return response.json();
     })
     .then(function(res){
-        let registerContent = document.querySelector(".register-content")
+        const registerContent = document.querySelector(".register-content")
         registerMenu.style.height = "355px"
         if (res.ok == true) {
             registerAlert.textContent = "註冊成功，請登入頁面"
@@ -129,7 +149,25 @@ function signup(){
     })
     .then(function(res){
         if (res.ok == true) {
-            window.location.reload();
+            let message = "登出成功"
+            showRemind(message)
+            setTimeout(reload, 1000);
         };
     });
 };
+
+function booking(){
+    fetch("/api/user/auth",{
+        method: "GET"
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        if (data.data != null){
+            window.location.href = "/booking"
+        }else{
+            sign()
+        };
+    });
+}

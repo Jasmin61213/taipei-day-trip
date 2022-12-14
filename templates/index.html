@@ -16,7 +16,7 @@
             <div class="header">
                 <a class="title" href="/">台北一日遊</a>
                 <div class="right">
-                    <div class="func">預定行程</div>
+                    <a class="func" onclick="booking()">預定行程</a>
                     <div class="func" onclick="sign()" id="func"></div>
                 </div>
             </div>  
@@ -48,6 +48,10 @@
                     <div class="register-content" onclick="toSignIn();">已經有帳戶了？點此登入</div>
                 </div>
             </div>  
+            <div class="remind">
+                <img src="/image/icon_close.png" class="close-button-remind" onclick="userClose()">
+                <div class="text-remind"></div>
+            </div>
         </div>
 
         {% block content %}

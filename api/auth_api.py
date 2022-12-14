@@ -12,12 +12,12 @@ jwt_secret=os.getenv("jwt_secret")
  
 bcrypt = Bcrypt()
 
-user_api = Blueprint('user_api',
+auth_api = Blueprint('auth_api',
                    __name__,
                    static_folder='static',
                    template_folder='templates')
 
-@user_api.route("/api/user",methods=["POST"])
+@auth_api.route("/api/user",methods=["POST"])
 def api_user():
 	user_content = request.get_json()
 	name = user_content["name"]
@@ -34,14 +34,14 @@ def api_user():
 	except:
 		return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
 
-@user_api.route("/api/user/auth",methods=["GET","PUT","DELETE"])
+@auth_api.route("/api/user/auth",methods=["GET","PUT","DELETE"])
 def api_user_auth():
 	if request.method=="GET":
 		token = request.cookies.get('token')
 		if token == None:
 			return make_response(jsonify({"data":None}),200)
 		else:
-			user = jwt.decode(token, "secret", algorithms=["HS256"])
+			user = jwt.decode(token, jwt_secret, algorithms=["HS256"])
 			return make_response(jsonify({"data":user}),200)
             
 	if request.method=="PUT":
@@ -49,6 +49,8 @@ def api_user_auth():
 			user_content = request.get_json()
 			email = user_content["email"]
 			put_password = user_content["password"]
+			if email=="" or put_password=="":
+				return make_response({"error":True,"message":"請輸入帳號密碼"},400)
 			user = auth.signin(email)
 			if user == None:
 				return make_response(jsonify({"error":True,"message":"沒有此帳號，請重新輸入"}),400)

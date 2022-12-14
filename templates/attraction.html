@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block title %}
-<title>台北一日遊</title>
+<title></title>
 <link rel="stylesheet" type="text/css" href="/css/attraction.css">
 {% endblock %}
 
@@ -23,15 +23,15 @@
             <input class="date" type="date">
             <div class="reserve-time">選擇時間：</div>
             <form class="radio" onclick="check()">
-                <input value="first-half-day" id="first-half-day" type="radio" name="reserve" checked>
-                <label for="first-half-day" class="radio-label">上半天</label>
-                <input value="second-half-day" id="second-half-day" type="radio" name="reserve">
-                <label for="second-half-day" >下半天</label>
+                <input value="morning" id="morning" type="radio" name="reserve" checked>
+                <label for="morning" class="radio-label">上半天</label>
+                <input value="afternoon" id="afternoon" type="radio" name="reserve">
+                <label for="afternoon" class="radio-label">下半天</label>
             </form>                    
             <div class="reserve-fee">導覽費用：</div>
-            <div class="reserve-fee1">新台幣：2000元</div>
-            <div class="reserve-fee2">新台幣：2500元</div>
-            <button class="reserve-button">開始預約行程</button>
+            <div class="reserve-fee2000">新台幣：2000元</div>
+            <div class="reserve-fee2500">新台幣：2500元</div>
+            <button class="reserve-button" onclick="reserve()">開始預約行程</button>
         </div>
     </div>
     <hr class="hr">

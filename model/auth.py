@@ -11,6 +11,7 @@ class auth:
             cursor.execute(email_select,value)
             result = cursor.fetchone()
             return result
+
         finally:
             cursor.close()
             connection_object.close()
@@ -24,6 +25,7 @@ class auth:
             cursor.execute(user,value)
             connection_object.commit()
             return True
+
         finally:
             cursor.close()
             connection_object.close()
@@ -37,6 +39,7 @@ class auth:
             cursor.execute(user_select,value)
             user = cursor.fetchone()
             return user
+
         finally:
             cursor.close()
             connection_object.close()
@@ -50,6 +53,7 @@ class auth:
             cursor.execute(password_select,value)
             password = cursor.fetchone()
             return password
+            
         finally:
             cursor.close()
             connection_object.close()    

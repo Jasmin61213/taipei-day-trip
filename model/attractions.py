@@ -11,6 +11,7 @@ class attractions:
             cursor.execute(data_select,page_value)
             data = cursor.fetchall()
             return data
+
         finally:
             cursor.close()
             connection_object.close()
@@ -24,6 +25,7 @@ class attractions:
             cursor.execute(data_select,next_page_value)
             next_page_data=cursor.fetchall()
             return next_page_data
+
         finally:
             cursor.close()
             connection_object.close()
@@ -37,6 +39,7 @@ class attractions:
             cursor.execute(keyword_select,page_value)
             data = cursor.fetchall()
             return data
+
         finally:
             cursor.close()
             connection_object.close()
@@ -50,6 +53,7 @@ class attractions:
             cursor.execute(keyword_select,next_page_value)
             next_page_data = cursor.fetchall()    
             return next_page_data   
+
         finally:
             cursor.close()
             connection_object.close()                  
@@ -66,6 +70,7 @@ class attractions:
                 return data
             else:
                 return None
+
         finally:
             cursor.close()
             connection_object.close()
@@ -78,6 +83,7 @@ class attractions:
             cursor.execute(data_select)
             data_row = cursor.fetchall()
             return data_row
+            
         finally:
             cursor.close()
             connection_object.close()
