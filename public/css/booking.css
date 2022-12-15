@@ -351,6 +351,8 @@ img{
     flex: none;
     width: 266px;
     height: 200px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
 }
 
 .delete{
@@ -424,15 +426,16 @@ button{
 
     .delete{
         right: 0px;
-        top: 0px;
+        top: 700px;
     }
 
     .box{
         flex-wrap: wrap;
     }
 
-    .img{
+    img{
         width: 100%;
+        height: 520px;
     }
     
     .content_text_title{
@@ -476,5 +479,16 @@ button{
 
     .right{
         margin-right: 0px;
+    }
+
+    /*  */
+
+    img{
+        width: 100%;
+        height: 300px;
+    }
+
+    .delete{
+        top: 485px;
     }
 }
