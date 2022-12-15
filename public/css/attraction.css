@@ -54,10 +54,15 @@
     justify-content: flex-end;
 }
 
+.a func{
+    color: #666666;
+}
+
 .func{
     cursor: pointer;
     flex: none;
     margin-right: 10px;
+    color: #666666;
 }
 
 .sign-in::before{
@@ -83,6 +88,7 @@
     background-color: #ffffff;
     border: 0px none;
     border-radius: 5px;
+    box-shadow: 0 2px 6px #757575;
 }
 
 .sign-in-bar{
@@ -118,6 +124,7 @@
 }
 
 .user-input{
+    outline: none;
     width: 291px;
     height: 47px;
     margin: 5px 0px;
@@ -174,6 +181,7 @@
     background-color: #ffffff;
     border: 0px none;
     border-radius: 5px;
+    box-shadow: 0 2px 6px #757575;
 }
 
 .register-bar{
@@ -242,6 +250,51 @@
     color: #666666;
     margin: 5px 0px;
 }
+
+.remind::before{
+    position: absolute; 
+    top: 0px;
+    content: ""; 
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border: 0px none;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.remind{
+    display: none;
+    z-index: 999;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 340px;
+    height: 120px;
+    background-color: #ffffff;
+    border: 0px none;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px #757575;
+}
+
+.text-remind{
+    margin-top: 0px;
+    font-size: 28px;
+    font-weight: 500;
+    color: #757575;
+    text-align: center;
+    justify-content: center;
+}
+
+.close-button-remind{
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    margin-top: 23px;
+    margin-left: 310px;
+}
+
+/*  */
 
 .wrapper{
     position: relative;
@@ -421,13 +474,13 @@ input[type="radio"]{
     font-weight: 700;
 }
 
-.reserve-fee1{
+.reserve-fee2000{
     position: absolute;
     top: 182px;left: 106px;
     color: #666666;
 }
 
-.reserve-fee2{
+.reserve-fee2500{
     position: absolute;
     top: 182px;left: 106px;
     color: #666666;
@@ -502,6 +555,11 @@ input[type="radio"]{
     margin-right: 10px;
     color: #666666;
     font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+    color: #757575;
 }
 
 .footer{

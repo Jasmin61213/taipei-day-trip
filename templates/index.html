@@ -3,8 +3,12 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="utf-8">
+
+        {% block title %}
         <title>台北一日遊</title>
         <link rel="stylesheet" type="text/css" href="/css/index.css">
+        {% endblock %}
+
     </head>
     <body class="body">
         <div class="hide-bg" onclick="userClose()"></div>
@@ -12,7 +16,7 @@
             <div class="header">
                 <a class="title" href="/">台北一日遊</a>
                 <div class="right">
-                    <div class="func">預定行程</div>
+                    <a class="func" onclick="booking()">預定行程</a>
                     <div class="func" onclick="sign()" id="func"></div>
                 </div>
             </div>  
@@ -44,7 +48,13 @@
                     <div class="register-content" onclick="toSignIn();">已經有帳戶了？點此登入</div>
                 </div>
             </div>  
+            <div class="remind">
+                <img src="/image/icon_close.png" class="close-button-remind" onclick="userClose()">
+                <div class="text-remind"></div>
+            </div>
         </div>
+
+        {% block content %}
         <div class="welcome_image">
             <div class="welcome">
                 <div class="describe1">輕鬆享受台北一日悠閒</div>
@@ -204,7 +214,14 @@
                 </div>
             </a>
         </div>
+        {% endblock %}
+
         <div class="footer">COPYRIGHT © 2022 台北一日遊</div>
+        <script type="text/javascript" src="/js/common.js"></script>
+        
+        {% block script %}
         <script type="text/javascript" src="/js/index.js"></script>
+        {% endblock %}
+
     </body>
 </html>
