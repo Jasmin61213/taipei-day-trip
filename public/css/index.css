@@ -306,7 +306,7 @@
 
 .input_text{
     outline: none;
-    cursor: pointer;
+    cursor: text;
     flex: none;
     width: 382px;
     border: 0.5px #ffffff solid;
@@ -353,6 +353,12 @@
     background-color: #448899;
     border: 0.5px #448899 solid;
     border-radius: 0px 5px 5px 0px;
+    transition-duration: 0.4s;
+}
+
+.search_image:hover{
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 
 .content{
@@ -415,6 +421,15 @@
 a{
     text-decoration: none;
     color: #757575;
+}
+
+.link{
+    transition-duration: 0.4s;
+}
+
+.link:hover{
+    border-radius: 5px;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 
 .footer{

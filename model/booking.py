@@ -39,7 +39,10 @@ class booking:
         try:
             connection_object = model.database.dbconnect()
             cursor = connection_object.cursor(dictionary=True)
-            booking = "INSERT INTO booking(user_id,attraction_id,date,time,price) VALUES (%s,%s,%s,%s,%s)"
+            booking = (
+                """INSERT INTO booking(user_id,attraction_id,date,time,price)
+                VALUES (%s,%s,%s,%s,%s)"""
+                )
             value = (user_id,attractionId,date,time,price)
             cursor.execute(booking,value)
             connection_object.commit()

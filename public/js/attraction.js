@@ -14,7 +14,7 @@ fetch("/api"+url)
     //img & dot
     for (let i = 0; i<dataList.images.length; i++){
         const img = document.createElement("img");
-        img.className = "img";
+        img.className = "img fade";
         img.src = dataList.images[i];
         imgContainer.appendChild(img)
         const dots = document.createElement("span")

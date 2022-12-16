@@ -333,6 +333,7 @@ span{
 }
 
 .input{
+    cursor: text;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
     width: 178px;
@@ -356,6 +357,7 @@ img{
 }
 
 .delete{
+    cursor: pointer;
     position: absolute;
     right: 0px;
     width: 30px;
@@ -388,6 +390,11 @@ button{
     border: 0px none;
     font-weight: 400;
     margin: 15px 0px 40px 830px;
+}
+
+button:hover{
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 
 /*  */
