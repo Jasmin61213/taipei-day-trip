@@ -139,11 +139,18 @@
     cursor: pointer;
     width: 310px;
     height: 47px;
+    font-size: 19px;
     background: #448899;
     border-radius: 5px;
     border: #448899;
     color: #ffffff;
     margin: 5px 0px;
+    transition-duration: 0.4s;
+}
+
+.sign-in-button:hover{
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 
 .sign-alert{
@@ -232,11 +239,18 @@
     cursor: pointer;
     width: 310px;
     height: 47px;
+    font-size: 19px;
     background: #448899;
     border-radius: 5px;
     border: #448899;
     color: #ffffff;
     margin: 5px 0px;
+    transition-duration: 0.4s;
+}
+
+.register-button:hover{
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 
 .register-alert{
