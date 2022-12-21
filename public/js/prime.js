@@ -122,7 +122,6 @@ function order(payData){
         }
         if (res.status == 400){
             message = "付款失敗"
-            console.log(data.status)
             showRemind(message)
         }
     });
