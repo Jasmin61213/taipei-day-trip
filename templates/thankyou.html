@@ -1,12 +1,16 @@
 {% extends 'index.html' %}
 
 {% block title %}
-<title>台北一日遊</title>
+<title>感謝您的訂購</title>
 <link rel="stylesheet" type="text/css" href="/css/thankyou.css">
 {% endblock %}
 
 {% block content %}
-
+<div class="content">
+    <div>感謝您的訂購！</div>
+    <div>訂單編號：{{ number }}</div>
+    <img src="image/thankyou.png">
+</div>
 {% endblock %}
 
 {% block script %}

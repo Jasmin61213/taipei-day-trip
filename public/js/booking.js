@@ -57,7 +57,6 @@ fetch("/api/booking",{
     };
 });
 
-
 //刪除行程
 function deleteReserve(){
     fetch("/api/booking",{
@@ -72,4 +71,3 @@ function deleteReserve(){
         };
     });
 };
-

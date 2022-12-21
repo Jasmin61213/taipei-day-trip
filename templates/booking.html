@@ -28,18 +28,25 @@
         <div class="content_text">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
         <hr>
         <div class="content_title">信用卡付款資訊</div>
-        <div>卡片號碼： <input type="text" class="input" id="card-number" placeholder="**** **** ****" maxlength="12"></div>
-        <div>過期時間： <input type="text" class="input" id="card-expiration-date" placeholder="MM/YY"></div>
-        <div>驗證密碼： <input type="text" class="input" id="card-ccv" placeholder="CVV" maxlength="3"></div>
+        <div class="creditcard">
+            卡片號碼：<div class="tpfield" id="card-number"></div>
+        </div>
+        <div class="creditcard">
+            過期時間：<div class="tpfield" id="card-expiration-date"></div>
+        </div>
+        <div class="creditcard">
+            驗證密碼：<div class="tpfield" id="card-ccv"></div>
+        </div>
         <hr>
         <div class="content_text right" id="fee">總價：新台幣 2000 元</div>
-        <button>確認訂購並付款</button>
+        <button onclick="onSubmit()">確認訂購並付款</button>
     </div>
 </div>
 
 {% endblock %}
 
 {% block script %}
+<script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
 <script type="text/javascript" src="/js/booking.js"></script>
-<script type="text/javascript" src="/js/order.js"></script>
+<script type="text/javascript" src="/js/prime.js"></script>
 {% endblock %}
