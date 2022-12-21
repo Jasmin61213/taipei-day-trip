@@ -78,7 +78,7 @@ def api_orders():
                     }
                     return make_response({"data":data},200)
                 else:
-                    return make_response({"error":True,"message":"付款失敗","order_id":order_number},400)
+                    return make_response({"error":True,"message":"付款失敗","order_id":order_number,"status":res},400)
         except:
             return make_response({"error":True,"message":"伺服器錯誤"},500)
 
