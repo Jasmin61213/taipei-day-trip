@@ -93,8 +93,8 @@ function onSubmit() {
             }
             order(payData)
         })
-    }
-}
+    };
+};
 
 function order(payData){
     fetch("/api/orders",{
@@ -121,8 +121,8 @@ function order(payData){
               }, 1.5 * 1000); 
         }
         if (res.status == 400){
-            message = data.data.data.payment.message
+            message = data.message
             showRemind(message)
         }
-    })
-}
+    });
+};
