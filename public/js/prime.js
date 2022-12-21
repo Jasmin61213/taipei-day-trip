@@ -121,7 +121,7 @@ function order(payData){
               }, 1.5 * 1000); 
         }
         if (res.status == 400){
-            message = data.message
+            message = "付款失敗"
             showRemind(message)
         }
     });
