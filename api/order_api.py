@@ -4,7 +4,6 @@ from flask import make_response
 from model.booking import booking
 from model.order import order
 import requests
-import re
 import jwt
 import time
 import os
@@ -25,8 +24,29 @@ def thankyou():
     number=request.args.get("number",None) 
     return render_template("thankyou.html",number=number)
 
-@order_api.route("/api/orders", methods=["POST"])
+@order_api.route("/orders")
+def your_orders():
+    return render_template("orders.html")
+
+@order_api.route("/api/orders", methods=["GET","POST"])
 def api_orders():
+    if request.method=="GET":
+        try:
+            token = request.cookies.get('token')
+            if token == None:
+                return make_response({"error":True,"message":"未登入系統，拒絕存取"},403)
+            else:
+                user = jwt.decode(token, jwt_secret, algorithms=["HS256"])
+                user_id = user["id"]
+                your_order = order.get_order_id(user_id)
+                list = []
+                for orders in your_order:
+                    list.append(orders[0])
+                return make_response({"data":list},200)
+        except:
+            return make_response({"error":True,"message":"伺服器錯誤"},500)
+
+    if request.method=="POST":
         try:
             token = request.cookies.get('token')
             if token == None:

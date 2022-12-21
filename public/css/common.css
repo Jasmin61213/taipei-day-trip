@@ -1,5 +1,30 @@
 @import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap);
 
+.func--img{
+    width: 25px;
+    height: 25px;
+}
+
+.member{
+    width: 100px;
+    height: 72px;
+    /* display: none; */
+    z-index: 999;
+    top: 57px;
+    right: 40px;
+    position: absolute;
+    background-color: #ffffff;
+    border: 0px none;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px #757575;
+}
+
+.member-func{
+    color: #666666;
+    text-align: center;
+    margin: 8px;
+}
+
 .body{
     margin: 0px;
     font-size: 16px;

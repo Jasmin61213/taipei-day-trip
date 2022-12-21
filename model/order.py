@@ -60,3 +60,21 @@ class order:
         finally:
             cursor.close()
             connection_object.close()
+
+    def get_order_id(user_id):
+        try:
+            connection_object = model.database.dbconnect()
+            cursor = connection_object.cursor()
+            mysql_query = (
+                """SELECT 
+                attraction_id,order_id
+                FROM orders 
+                WHERE user_id=%s"""
+            )
+            value = (user_id,)
+            cursor.execute(mysql_query,value)
+            result = cursor.fetchall()
+            return result
+        finally:
+            cursor.close()
+            connection_object.close()
