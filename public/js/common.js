@@ -85,7 +85,7 @@ function member(){
 //關掉memberList
 function memberClose(){
     memberList.style.display = "none";
-    hideBg.style.display="none";
+    bg.style.display="none";
     user.setAttribute("onclick","member()");
 };
 
