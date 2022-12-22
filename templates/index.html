@@ -13,13 +13,21 @@
     </head>
     <body class="body">
         <div class="hide-bg" onclick="userClose()"></div>
+        <div class="bg" onclick="memberClose()"></div>
         <div class="header_bg">
             <div class="header">
                 <a class="title" href="/">台北一日遊</a>
                 <div class="right">
-                    <!-- <a class="func" onclick="booking()">預定行程</a> -->
-                    <div class="func" onclick="sign()" id="func"></div>
-                    <img src="/image/user.png" class="func func--img">
+                    <a class="func" id="cartFunc"><img src="/image/cart.png" class="cart"></a>
+                    <img src="/image/user.png" class="func func--img" id="userFunc">
+                    <!-- <a class="func" onclick="booking()"><img src="image/cart.png" class="cart"></a> -->
+                    <!-- <div class="func" onclick="sign()" id="func"></div> -->
+                    <!-- <img src="/image/user.png" class="func func--img" onclick="sign()" id="func"> -->
+                    <div class="member" id="member">
+                        <div class="member-func">個人資料</div>
+                        <div class="member-func">訂單查詢</div>
+                        <div class="member-func" onclick="signup()">登出系統</div>
+                    </div>
                 </div>
             </div>  
             <div class="sign-in">
@@ -53,10 +61,6 @@
             <div class="remind">
                 <img src="/image/icon_close.png" class="close-button-remind" onclick="userClose()">
                 <div class="text-remind"></div>
-            </div>
-            <div class="member">
-                <div class="member-func">預定行程</div>
-                <div class="member-func">訂單查詢</div>
             </div>
         </div>
 

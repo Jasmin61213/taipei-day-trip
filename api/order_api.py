@@ -96,6 +96,7 @@ def api_orders():
                             }
                         }
                     }
+                    booking.delete_booking(user_id)
                     return make_response({"data":data},200)
                 else:
                     return make_response({"error":True,"message":"付款失敗","order_id":order_number},400)
