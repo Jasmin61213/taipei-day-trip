@@ -34,7 +34,11 @@ class attractions:
         try:
             connection_object = model.database.dbconnect()
             cursor = connection_object.cursor(dictionary=True)
-            keyword_select = "SELECT * FROM attraction WHERE category=%s OR name LIKE %s ORDER BY id LIMIT %s,12"
+            keyword_select = (
+                """SELECT * FROM attraction 
+                WHERE category=%s OR name LIKE %s 
+                ORDER BY id LIMIT %s,12"""
+            )
             page_value = (keyword,"%"+f"{keyword}"+"%",page_select)
             cursor.execute(keyword_select,page_value)
             data = cursor.fetchall()
@@ -48,7 +52,11 @@ class attractions:
         try:
             connection_object = model.database.dbconnect()
             cursor = connection_object.cursor(dictionary=True)
-            keyword_select = "SELECT * FROM attraction WHERE category=%s OR name LIKE %s ORDER BY id LIMIT %s,12"
+            keyword_select = (
+                """SELECT * FROM attraction 
+                WHERE category=%s OR name LIKE %s 
+                ORDER BY id LIMIT %s,12"""
+            )
             next_page_value = (keyword,"%"+f"{keyword}"+"%",next_page_select)			
             cursor.execute(keyword_select,next_page_value)
             next_page_data = cursor.fetchall()    

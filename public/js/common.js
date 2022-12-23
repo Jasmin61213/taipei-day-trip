@@ -1,4 +1,6 @@
 //驗證是否登入
+const cart = document.getElementById("cartFunc");
+const user = document.getElementById("userFunc");
 fetch("/api/user/auth",{
     method: "GET"
 })
@@ -6,46 +8,48 @@ fetch("/api/user/auth",{
     return response.json();
 })
 .then(function(data){
-    const signUp = document.getElementById("func");
     if (data.data != null){
-        signUp.setAttribute("onclick","signup()")
-        signUp.textContent = "登出系統"
+        cart.setAttribute("href","/booking");
+        user.setAttribute("onclick","member()");
     }else{
-        signUp.textContent = "登入/註冊"
+        cart.setAttribute("onclick","sign()");
+        user.setAttribute("onclick","sign()");
     };
 });
 
 //註冊＆登入
 const signInMenu = document.querySelector(".sign-in");
 const registerMenu = document.querySelector(".register");
-const hideBg=document.querySelector(".hide-bg");
+const hideBg = document.querySelector(".hide-bg");
 const body = document.querySelector(".body");
-const signAlert = document.querySelector(".sign-alert")
-const registerAlert = document.querySelector(".register-alert")
-const remind = document.querySelector(".remind")
-const textRemind = document.querySelector(".text-remind")
+const signAlert = document.querySelector(".sign-alert");
+const registerAlert = document.querySelector(".register-alert");
+const remind = document.querySelector(".remind");
+const textRemind = document.querySelector(".text-remind");
+const memberList = document.getElementById("member");
+const bg = document.querySelector(".bg");
 
 //重整頁面
 function reload(){
     window.location.reload();
-}
+};
 
 //打開登入頁面
 function sign(){
     signInMenu.style.display = "block";
-    hideBg.style.display="block";
-    hideBg.style.height=document.body.clientHeight+"px"; 
-    body.style.overflow = "hidden"
+    hideBg.style.display = "block";
+    hideBg.style.height = document.body.clientHeight+"px"; 
+    body.style.overflow = "hidden";
 };
 
 //打開提醒框
 function showRemind(message){
-    remind.style.display = "block"
-    textRemind.textContent = message
+    remind.style.display = "block";
+    textRemind.textContent = message;
     hideBg.style.display="block";
     hideBg.style.height=document.body.clientHeight+"px"; 
-    body.style.overflow = "hidden"
-}
+    body.style.overflow = "hidden";
+};
 
 //關掉會員視窗
 function userClose(){
@@ -68,6 +72,21 @@ function toRegister(){
 function toSignIn(){
     signInMenu.style.display = "block";
     registerMenu.style.display = "none";
+};
+
+//打開memberList
+function member(){
+    memberList.style.display = "block";
+    bg.style.display = "block";
+    bg.style.height=document.body.clientHeight+"px"; 
+    user.setAttribute("onclick","memberClose()");
+};
+
+//關掉memberList
+function memberClose(){
+    memberList.style.display = "none";
+    bg.style.display="none";
+    user.setAttribute("onclick","member()");
 };
 
 //登入會員
@@ -93,12 +112,12 @@ function signIn(){
     .then(function(res){
         if (res.ok == true) {
             signInMenu.style.display = "none";
-            let message = "登入成功"
-            showRemind(message)
+            let message = "登入成功";
+            showRemind(message);
             setTimeout(reload, 1000);
         };
         if (res.error == true) {
-            signInMenu.style.height = "298px"
+            signInMenu.style.height = "298px";
             signAlert.textContent = res.message;
         };          
     });
@@ -127,11 +146,11 @@ function register(){
         return response.json();
     })
     .then(function(res){
-        const registerContent = document.querySelector(".register-content")
-        registerMenu.style.height = "355px"
+        const registerContent = document.querySelector(".register-content");
+        registerMenu.style.height = "355px";
         if (res.ok == true) {
-            registerAlert.textContent = "註冊成功，請登入頁面"
-            registerContent.textContent = "點此登入"
+            registerAlert.textContent = "註冊成功，請登入頁面";
+            registerContent.textContent = "點此登入";
         };
         if (res.error == true) {
             registerAlert.textContent = res.message;
@@ -149,13 +168,14 @@ function signup(){
     })
     .then(function(res){
         if (res.ok == true) {
-            let message = "登出成功"
-            showRemind(message)
+            let message = "登出成功";
+            showRemind(message);
             setTimeout(reload, 1000);
         };
     });
 };
 
+//進入預定頁面
 function booking(){
     fetch("/api/user/auth",{
         method: "GET"
@@ -165,9 +185,9 @@ function booking(){
     })
     .then(function(data){
         if (data.data != null){
-            window.location.href = "/booking"
+            window.location.href = "/booking";
         }else{
-            sign()
+            sign();
         };
     });
-}
+};

@@ -1,0 +1,13 @@
+.content{
+    padding-top: 100px;
+    font-size: 24px;
+    color: #666666;
+    text-align: center; 
+    height: calc(100vh - 258px);
+}
+
+.img{
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+}

@@ -91,7 +91,7 @@ def api_booking():
             return make_response({"error":True,"message":"未登入系統，拒絕存取"},403)
         else: 
             user = jwt.decode(token, jwt_secret, algorithms=["HS256"])
-            user_id = user["id"]   
+            user_id = user["id"]
             booking.delete_booking(user_id)
             return make_response({"ok":True},200)
 

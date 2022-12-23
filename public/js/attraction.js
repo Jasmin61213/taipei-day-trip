@@ -14,7 +14,7 @@ fetch("/api"+url)
     //img & dot
     for (let i = 0; i<dataList.images.length; i++){
         const img = document.createElement("img");
-        img.className = "img";
+        img.className = "img fade";
         img.src = dataList.images[i];
         imgContainer.appendChild(img)
         const dots = document.createElement("span")
@@ -57,7 +57,6 @@ fetch("/api"+url)
     const dots = document.querySelectorAll(".dot")
     dots[0].className += " active";
     document.title = dataList.name;
-
     });
 
 //radio check
@@ -92,26 +91,26 @@ function slideOnclick(n){
 function showImg(n){
     const items = document.querySelectorAll(".img")
     const dots = document.querySelectorAll(".dot")
-    if (n > items.length-1) { current = 0 }
-    if (n < 0) { current = items.length-1 }
+    if (n > items.length-1) { current = 0 };
+    if (n < 0) { current = items.length-1 };
     for (let i = 0; i < items.length; i++){
-        items[i].style.display = "none"
+        items[i].style.display = "none";
     };
     for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
-    }   
-    items[current].style.display = "block"  
+    };
+    items[current].style.display = "block";
     dots[current].className += " active";
 };
 
 function reserve(){
-    const id = url.split("/")[2]
-    const date = document.querySelector(".date").value
+    const id = url.split("/")[2];
+    const date = document.querySelector(".date").value;
     const checked = document.querySelector('[name=reserve]:checked').value;
     if (checked == "morning" ){
-        price = "2000"
+        price = "2000";
     }else{
-        price = "2500"
+        price = "2500";
     };
     const time = document.querySelector('[name=reserve]:checked').value;
     data = {
@@ -130,19 +129,19 @@ function reserve(){
         }
     })
     .then(function(response){
-        res = response
+        res = response;
         return response.json();
     })
     .then(function(data){
         if (res.status == 403){
-            sign()
-        }
+            sign();
+        };
         if (res.status == 200){
-            window.location.href = "/booking"
-        }
+            window.location.href = "/booking";
+        };
         if (res.status == 400){
-            const message = data.message
-            showRemind(message)
-        }
+            const message = data.message;
+            showRemind(message);
+        };
     });
 };

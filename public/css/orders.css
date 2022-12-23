@@ -1,0 +1,18 @@
+.content{
+    color: #666666;
+    width: 1000px;
+    margin: 0px auto;
+}
+
+.wrap-content{
+    width: 800px;
+    margin: 0px auto;
+}
+
+.wrap{
+    margin: 20px 0px 20px 0px;
+    width: 800px;
+    height: 100px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}

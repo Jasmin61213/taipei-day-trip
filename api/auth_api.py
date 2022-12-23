@@ -3,9 +3,10 @@ from flask import Blueprint
 from flask import make_response
 from flask_bcrypt import Bcrypt
 from model.auth import auth
-import jwt
-import os
 from dotenv import load_dotenv
+import os
+import re
+import jwt
 
 load_dotenv()
 jwt_secret=os.getenv("jwt_secret")
@@ -25,12 +26,16 @@ def api_user():
 	password = user_content["password"]
 	hash_password = bcrypt.generate_password_hash(password).decode("utf-8")
 	try:
-		result=auth.get_user(email)
-		if result != None:
-			return make_response(jsonify({"error":True,"message":"此帳號重複註冊"}),400)
+		regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+		if re.fullmatch(regex, email):
+			result=auth.get_user(email)
+			if result != None:
+				return make_response(jsonify({"error":True,"message":"此帳號重複註冊"}),400)
+			else:
+				if auth.insert_user(name,email,hash_password):
+					return make_response(jsonify({"ok":True}),200)
 		else:
-			if auth.insert_user(name,email,hash_password):
-				return make_response(jsonify({"ok":True}),200)
+			return make_response(jsonify({"error":True,"message":"請輸入正確的信箱格式"}),400)
 	except:
 		return make_response(jsonify({"error":True,"message":"伺服器錯誤"}),500)
 
