@@ -26,7 +26,6 @@ fetch("/api/orders",{
 })
 .then(function(data){
     const orders = data.data;
-    console.log(orders)
     if (orders.length == 0){
         content.style.height="calc(100vh - 188.5px)"; 
         const noOrder = document.createElement("div");

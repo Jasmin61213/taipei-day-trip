@@ -8,16 +8,52 @@
 {% block content %}
 
 <div class="content">
-    <div class="wrap">
-        <div class="welcome_image">
-            <img src="/image/user.png" class="img">
+        <div class="bg-image">
+            <img src="/image/profile.png" class="img">
         </div>
-        <div>姓名</div>
-        <div>信箱</div>
-        <div>性別</div>
-        <div>年齡</div>
-        <div>電話號碼</div>
-        <div>地址</div>
+    <div class="wrap">
+        <div class="profile">
+            <div class="text">姓名：
+                <span id="name" class="span"></span>
+                <input type="text" class="input" id="nameInput">
+            </div>
+            <hr>
+            <div class="text">信箱：
+                <span id="email" class="span"></span>
+                <input type="text" class="input" id="emailInput">
+            </div>
+            <hr>
+            <div class="text">性別：
+                <span id="sex" class="span"></span>
+                <!-- <input type="text" class="input" id="sexInput"> -->
+                <form class="radio">
+                    <input value="男" id="gentle" type="radio" name="sex" checked>
+                    <label for="男" class="radio-label">男</label>
+                    <input value="女" id="female" type="radio" name="sex">
+                    <label for="女" class="radio-label">女</label>
+                </form>
+                
+            </div>
+            <hr>
+            <div class="text">生日：
+                <span id="age" class="span"></span>
+                <input type="date" class="input" id="ageInput">
+            </div>
+            <hr>
+            <div class="text">電話號碼：
+                <span id="phone" class="span"></span>
+                <input type="text" class="input" id="phoneInput">
+            </div>
+            <hr>
+            <div class="text">地址：
+                <span id="address" class="span"></span>
+                <input type="text" class="input" id="addressInput">
+            </div>
+            <div class="button-right">
+                <button class="button-edit" onclick="edit()">編輯</button>
+                <button class="button-submit" onclick="submit()">送出</button>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

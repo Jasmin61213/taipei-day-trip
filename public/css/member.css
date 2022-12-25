@@ -1,8 +1,101 @@
-.ccontent{
+.content{
 
 }
 
+.wrap{
+    display: flex;
+    justify-content: center;
+}
+
+.bg-image{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    background-color: #448899;
+}
+
 .img{
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
+    margin-top: 45px;
+}
+
+.profile{
+    margin: 30px 0px 30px 0px; 
+    padding: 10px 0 0px 0;
+    width: 1000px;
+    height: 480px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+hr{
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    border: 0.5px solid #E8E8E8;
+}
+.text-content{
+    display: flex;
+}
+
+.text{
+    height: 28.25px;
+    margin: 20px 100px 20px 110px;
+    color: #666666;
+}
+
+.radio{
+    display: none;
+}
+
+input[type="radio"]{
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #448899;
+    border: 0px none;
+    vertical-align:middle; margin-bottom:6px;
+}
+
+.button-right{
+    display: flex;
+    justify-content: center;
+}
+
+.button-edit{
+    display: block;
+    cursor: pointer;
+    width: 90px;
+    height: 36px;
+    color: #ffffff;
+    background-color: #448899;
+    border-radius: 5px;
+    font-size: 19px;
+    border: 0px none;
+    font-weight: 400;
+}
+.button-submit{
+    display: none;
+    cursor: pointer;
+    width: 90px;
+    height: 36px;
+    color: #ffffff;
+    background-color: #448899;
+    border-radius: 5px;
+    font-size: 19px;
+    border: 0px none;
+    font-weight: 400;
+}
+
+.input{
+    display: none;
+    cursor: text;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    width: 178px;
+    height: 16px;
+    padding: 5px;
+    outline: none;
 }
