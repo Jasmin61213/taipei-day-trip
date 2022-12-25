@@ -61,14 +61,16 @@ class order:
             cursor.close()
             connection_object.close()
 
-    def get_order_id(user_id):
+    def get_orders(user_id):
         try:
             connection_object = model.database.dbconnect()
-            cursor = connection_object.cursor()
+            cursor = connection_object.cursor(dictionary=True)
             mysql_query = (
                 """SELECT 
-                attraction_id,order_id
+                order_id,date,time,price,status,address,images,attraction.name,attraction_id
                 FROM orders 
+                INNER JOIN attraction
+                ON orders.attraction_id=attraction.id
                 WHERE user_id=%s"""
             )
             value = (user_id,)

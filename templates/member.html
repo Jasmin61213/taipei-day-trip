@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<title>會員中心</title>
+<link rel="stylesheet" type="text/css" href="/css/member.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="wrap">
+        <div class="welcome_image">
+            <img src="/image/user.png" class="img">
+        </div>
+        <div>姓名</div>
+        <div>信箱</div>
+        <div>性別</div>
+        <div>年齡</div>
+        <div>電話號碼</div>
+        <div>地址</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/js/member.js"></script>
+{% endblock %}

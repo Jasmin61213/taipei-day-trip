@@ -4,15 +4,175 @@
     margin: 0px auto;
 }
 
+.content-right{
+    width: 380px;
+}
+
 .wrap-content{
     width: 800px;
     margin: 0px auto;
 }
 
 .wrap{
-    margin: 20px 0px 20px 0px;
+    display: flex;
+    margin: 20px 0px 20px 0px; 
     width: 800px;
-    height: 100px;
+    height: 300px;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
+}
+
+.wrap:hover{
+    border-radius: 5px;
+    background-color: #E8E8E8;
+}
+
+.left{
+    flex: none;
+
+}
+
+.right{
+    flex: none;
+
+}
+
+.content-title{
+    margin: 30px 0px 30px 0px;
+    color: #666666;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.img{
+    width: 320px;
+    aspect-ratio: 4/3;
+    margin: 30px;
+}
+
+.text-content--title{
+    color: #448899;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.text-content{
+    color: #666666;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 5px 0px 5px 10px;
+}
+
+.text-content-top{
+    color: #448899;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 30px 0px 5px 10px;;
+}
+
+.text-content-bottom{
+    color: #666666;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 5px 0px 5px 10px;
+}
+
+.button{
+    display: none;
+    margin: 20px 0px 20px 10px;
+    cursor: pointer;
+    width: 154px;
+    height: 36px;
+    color: #ffffff;
+    background-color: #448899;
+    border-radius: 5px;
+    font-size: 19px;
+    border: 0px none;
+    font-weight: 400;
+}
+
+@media (max-width:1000px){
+    .content{
+        width: 90%;
+    }
+
+    .wrap-content{
+        width: 100%;
+    }
+
+    .text-content--title{
+        margin: 30px 0px 10px 30px;
+    }
+
+    .content-left{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .content-right{
+        width: 100%;
+    }
+
+    .wrap{
+        margin: 0px auto;
+        flex-wrap: wrap;
+        width: 90%;
+        height: 100%;
+    }
+
+    .img{
+        width: 90%;
+        margin: 30px 0px 10px 0px;
+    }
+
+    .text-content-top{
+        margin-top: 0px;
+        margin-left: 40px;
+    }
+
+    .text-content-bottom{
+        margin-bottom: 20px;
+        margin-left: 40px;
+    }
+
+    .text-content{
+        margin: 5px 0px 5px 40px;
+    }
+
+    .button{
+        margin: 10px 0px 30px 40px;
+    }
+
+    .footer{
+        margin-top: 50px;
+    }
+}
+
+@media (max-width:599px){
+    .img{
+        margin: 15px 0px 10px 0px;
+    }
+
+    .text-content--title{
+        margin: 30px 0px 10px 10px;
+    }
+
+    .text-content-top{
+        margin-top: 0px;
+        margin-left: 20px;
+    }
+
+    .text-content-bottom{
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+    .text-content{
+        margin: 5px 0px 5px 20px;
+    }
+
+    .button{
+        margin: 10px 0px 30px 20px;
+    }
 }

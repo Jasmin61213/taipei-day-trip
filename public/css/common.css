@@ -339,6 +339,11 @@
     color: #ffffff;
 }
 
+a{
+    text-decoration: none;
+    color: #757575;
+}
+
 @media (max-width:1199px){
     .header_bg{
         flex-wrap: wrap;
