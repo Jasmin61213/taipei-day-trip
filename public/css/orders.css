@@ -89,6 +89,11 @@
     border: 0px none;
     font-weight: 400;
 }
+.button:hover{
+    transition-duration: 0.4s;
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
+}
 
 @media (max-width:1000px){
     .content{

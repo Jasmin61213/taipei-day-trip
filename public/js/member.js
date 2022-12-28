@@ -11,6 +11,7 @@ fetch("/api/user/auth",{
     }
 });
 
+const img = document.querySelector('.img')
 const profileName = document.getElementById("name");
 const profileEmail = document.getElementById("email");
 const profileSex = document.getElementById("sex");
@@ -32,7 +33,17 @@ fetch("/api/member",{
     return response.json();
 })
 .then(function(data){
+    // console.log(data)
     const profile = data.data;
+    // console.log(profile.image)
+    // let imgBlob = FileReader.readAsDataURL(profile.image)
+    // console.log(imgBlob)
+    // profile.image.split("'")[1]
+    if (profile.image != null){
+        // img.src = profile.image.split("'")[1];
+        // img.src = "data:image/jpg;base64,"+profile.image.split("'")[1];
+        img.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/"+profile.image;
+    }
     profileName.textContent = profile.name;
     profileEmail.textContent = profile.email;
     profileSex.textContent = profile.sex;
@@ -41,11 +52,9 @@ fetch("/api/member",{
     profileAddress.textContent = profile.address;
     newName.value = profile.name;
     newEmail.value = profile.email;
-    // newSex.value = profile.sex;
     newAge.value = profile.age;
     newPhone.value = profile.phone;
     newAddress.value = profile.address;
-    
 });
 
 //修改會員資料
@@ -108,5 +117,27 @@ function submit(){
     };
 };
 
+//大頭貼
+const fileUploader = document.getElementById('file-uploader')
 
+//預覽大頭貼
+fileUploader.addEventListener('change', function(e) {
+    const file = e.target.files[0]
+    img.src = URL.createObjectURL(file)
+  })
 
+// function changeImg(){
+//     // const imgUrl = URL.createObjectURL(fileUploader.files[0])
+//     // imgData = {
+//     //     "image" : imgUrl
+//     // };
+//     fetch("api/member/img",{
+//         method: "POST"
+//     })
+//     .then(function(response){
+//         return response.json();
+//     })
+//     .then(function(data){
+//         window.location.reload();
+//     });
+// }

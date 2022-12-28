@@ -9,7 +9,13 @@
 
 <div class="content">
         <div class="bg-image">
-            <img src="/image/profile.png" class="img">
+            <form method="POST" enctype="multipart/form-data"  action="/api/member/img" class="form" target="hideIframe">
+                <img src="/image/profile.png" class="img">
+                <div class="file">
+                    <input type="file" id="file-uploader" accept="image/*" class="img-input" name="file">➕
+                </div>
+                <button class="button-img">上傳</button>
+            </form>
         </div>
     <div class="wrap">
         <div class="profile">
@@ -49,13 +55,14 @@
                 <span id="address" class="span"></span>
                 <input type="text" class="input" id="addressInput">
             </div>
-            <div class="button-right">
+            <div class="button-center">
                 <button class="button-edit" onclick="edit()">編輯</button>
                 <button class="button-submit" onclick="submit()">送出</button>
             </div>
         </div>
     </div>
 </div>
+<iframe id="myIframe" name="hideIframe" style="display:none;"></iframe>    
 {% endblock %}
 
 {% block script %}

@@ -1,21 +1,44 @@
 //驗證是否登入
 const cart = document.getElementById("cartFunc");
 const user = document.getElementById("userFunc");
-fetch("/api/user/auth",{
+
+async function getUser(){
+    const response = await fetch("/api/user/auth",{
     method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.data != null){
+    })
+    const res = await response.json();
+    if (res.data != null){
         cart.setAttribute("href","/booking");
         user.setAttribute("onclick","member()");
     }else{
         cart.setAttribute("onclick","sign()");
         user.setAttribute("onclick","sign()");
     };
-});
+}
+getUser();
+
+// .then(function(response){
+//     return 
+// })
+// .then(function(data){
+    
+// });
+
+// fetch("/api/user/auth",{
+//     method: "GET"
+// })
+// .then(function(response){
+//     return response.json();
+// })
+// .then(function(data){
+//     if (data.data != null){
+//         cart.setAttribute("href","/booking");
+//         user.setAttribute("onclick","member()");
+//     }else{
+//         cart.setAttribute("onclick","sign()");
+//         user.setAttribute("onclick","sign()");
+//     };
+// });
 
 //註冊＆登入
 const signInMenu = document.querySelector(".sign-in");

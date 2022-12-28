@@ -11,14 +11,38 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 200px;
+    height: 250px;
     background-color: #448899;
 }
 
 .img{
-    width: 110px;
-    height: 110px;
-    margin-top: 45px;
+    width: 150px;
+    height: 150px;
+    margin-top: 35px;
+    object-fit: cover;
+    border-radius: 99px;
+}
+
+.button-img{
+    z-index: 999;
+    top: 200px;
+    right: 45px;
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    color: #448899;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-size: 19px;
+    border: 0px none;
+    font-weight: 400;
+    text-decoration: none;
+}
+.button-img:hover{
+    transition-duration: 0.4s;
+    background-color: #ffffffe8;
+    /* box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738); */
 }
 
 .profile{
@@ -59,7 +83,7 @@ input[type="radio"]{
     vertical-align:middle; margin-bottom:6px;
 }
 
-.button-right{
+.button-center{
     display: flex;
     justify-content: center;
 }
@@ -76,6 +100,12 @@ input[type="radio"]{
     border: 0px none;
     font-weight: 400;
 }
+.button-edit:hover{
+    transition-duration: 0.4s;
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
+}
+
 .button-submit{
     display: none;
     cursor: pointer;
@@ -88,6 +118,11 @@ input[type="radio"]{
     border: 0px none;
     font-weight: 400;
 }
+.button-submit:hover{
+    transition-duration: 0.4s;
+    background-color: #478fa1;
+    box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
+}
 
 .input{
     display: none;
@@ -98,4 +133,62 @@ input[type="radio"]{
     height: 16px;
     padding: 5px;
     outline: none;
+}
+
+.form{
+    position: relative;
+}
+
+.file {
+    width: 32px;
+    height: 32px;
+    top: 35px;
+    right: 10px;
+    position: absolute;
+    display: inline-block;
+    background: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-decoration: none;
+}
+.file input {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    transition-duration: 0.4s;
+    background-color: #ffffffe8;
+}
+
+@media (max-width:1000px){
+    .profile{
+        width: 90%;
+    }
+    hr{
+        width: 90%;
+    }
+    .text{
+        margin: 20px 60px 20px 60px;;
+    }
+}
+
+@media (max-width:599px){
+    .input{
+        width: 130px
+    }
+    .text{
+        margin: 20px 30px 20px 30px;;
+    }
+    .button-edit{
+        margin-top: 10px;
+    }
+    .button-submit{
+        margin-top: 10px;
+    }
 }

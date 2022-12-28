@@ -154,5 +154,5 @@ fetch("/api/orders",{
             wrapContent.appendChild(wrap);
             content.appendChild(wrapContent);
         };
-    } 
+    };
 });

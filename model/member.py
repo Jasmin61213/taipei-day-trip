@@ -8,7 +8,7 @@ class member:
             cursor = connection_object.cursor(dictionary=True)
             mysql_query = (
                 """SELECT 
-                name,email,sex,age,phone,address
+                name,email,sex,age,phone,address,image
                 FROM user
                 WHERE id=%s"""
             )
@@ -45,4 +45,21 @@ class member:
             cursor.close()
             connection_object.close()
 
-    
+    def insert_profile_img(file_name,user_id):
+        try:
+            connection_object = model.database.dbconnect()
+            cursor = connection_object.cursor(dictionary=True)
+            mysql_query = (
+                """UPDATE user
+                 SET image=%s
+                 WHERE id=%s"""
+                )
+            value = (file_name,user_id)
+            cursor.execute(mysql_query,value)
+            connection_object.commit()
+            return True
+        except:
+            return False
+        finally:
+            cursor.close()
+            connection_object.close()
