@@ -60,7 +60,6 @@ fetch("/api"+url)
     });
 
 //radio check
-
 function check(){
     let checked = document.querySelector('[name=reserve]:checked').value;
     let reserveFee2000 = document.querySelector(".reserve-fee2000");

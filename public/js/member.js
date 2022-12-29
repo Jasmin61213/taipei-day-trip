@@ -1,15 +1,14 @@
 //驗證是否登入
-fetch("/api/user/auth",{
+async function getAuth(){
+    const response = await fetch("/api/user/auth",{
     method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.data == null){
+    })
+    const res = await response.json();
+    if (res.data == null){
         window.location.href = "/";
-    }
-});
+    };
+};
+getAuth();
 
 const img = document.querySelector('.img')
 const profileName = document.getElementById("name");
@@ -26,22 +25,14 @@ const newPhone = document.getElementById("phoneInput");
 const newAddress = document.getElementById("addressInput");
 
 //拿會員資料
-fetch("/api/member",{
-    method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    // console.log(data)
+async function getMember(){
+    const response = await fetch("/api/member",{
+        method: "GET",
+        cache: "no-cache"
+    })
+    const data = await response.json();
     const profile = data.data;
-    // console.log(profile.image)
-    // let imgBlob = FileReader.readAsDataURL(profile.image)
-    // console.log(imgBlob)
-    // profile.image.split("'")[1]
     if (profile.image != null){
-        // img.src = profile.image.split("'")[1];
-        // img.src = "data:image/jpg;base64,"+profile.image.split("'")[1];
         img.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/"+profile.image;
     }
     profileName.textContent = profile.name;
@@ -55,11 +46,17 @@ fetch("/api/member",{
     newAge.value = profile.age;
     newPhone.value = profile.phone;
     newAddress.value = profile.address;
-});
+};
+if (document.readyState === "complete"){
+    getMember();
+}else{
+    document.addEventListener("DOMContentLoaded", getMember);
+};
 
 //修改會員資料
 const buttonEdit = document.querySelector(".button-edit");
 const buttonSubmit = document.querySelector(".button-submit");
+
 const radio = document.querySelector(".radio");
 const text = document.querySelectorAll(".span");
 const input = document.querySelectorAll(".input");
@@ -109,35 +106,24 @@ function submit(){
         .then(function(response){
             return response.json();
         })
-        .then(function(data){
-            buttonEdit.style.display = "block";
-            buttonSubmit.style.display = "none";
-            window.location.reload();
+        .then(function(res){
+            if (res.ok == true){
+                buttonEdit.style.display = "block";
+                buttonSubmit.style.display = "none";
+                window.location.reload();
+            };
+            if (res.error == true){
+                showRemind(res.message);
+            };
         });
     };
 };
 
 //大頭貼
-const fileUploader = document.getElementById('file-uploader')
+const fileUploader = document.getElementById('file-uploader');
 
 //預覽大頭貼
 fileUploader.addEventListener('change', function(e) {
-    const file = e.target.files[0]
-    img.src = URL.createObjectURL(file)
-  })
-
-// function changeImg(){
-//     // const imgUrl = URL.createObjectURL(fileUploader.files[0])
-//     // imgData = {
-//     //     "image" : imgUrl
-//     // };
-//     fetch("api/member/img",{
-//         method: "POST"
-//     })
-//     .then(function(response){
-//         return response.json();
-//     })
-//     .then(function(data){
-//         window.location.reload();
-//     });
-// }
+    const file = e.target.files[0];
+    img.src = URL.createObjectURL(file);
+  });

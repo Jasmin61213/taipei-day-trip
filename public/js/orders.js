@@ -1,31 +1,29 @@
 const content = document.querySelector(".content");
+
 //驗證是否登入
-fetch("/api/user/auth",{
-    method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.data == null){
+async function getAuth(){
+    const response = await fetch("/api/user/auth",{
+        method: "GET"
+    })
+    const res = await response.json();
+    if (res.data == null){
         window.location.href = "/";
     }else{
-        // const content = document.querySelector(".content");
         const hello = document.createElement("div");
-        hello.textContent = `您好，${data.data.name}，您的預訂行程如下：`;
+        hello.textContent = `您好，${res.data.name}，您的預訂行程如下：`;
         hello.className = "content-title";
         content.appendChild(hello);
     };
-});
+};
 
-fetch("/api/orders",{
+async function getOrders(){
+    const response = await fetch("/api/orders",{
     method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    const orders = data.data;
+    })
+    const res = await response.json();
+    const orders = res.data;
+    const loading = document.querySelector(".load-wrap");
+    loading.style.display = "none";
     if (orders.length == 0){
         content.style.height="calc(100vh - 188.5px)"; 
         const noOrder = document.createElement("div");
@@ -155,4 +153,15 @@ fetch("/api/orders",{
             content.appendChild(wrapContent);
         };
     };
-});
+};
+
+async function run(){
+    await getAuth();
+    await getOrders();
+}
+
+if (document.readyState === "complete"){
+    run();
+}else{
+    document.addEventListener("DOMContentLoaded", run);
+};

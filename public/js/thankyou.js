@@ -1,12 +1,11 @@
 //驗證是否登入
-fetch("/api/user/auth",{
+async function getAuth(){
+    const response = await fetch("/api/user/auth",{
     method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.data == null){
-        window.location.href = "/";
+    })
+    const res = await response.json();
+    if (res.data == null){
+            window.location.href = "/";
     };
-});
+};
+getAuth();

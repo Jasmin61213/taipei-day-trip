@@ -4,7 +4,7 @@ const user = document.getElementById("userFunc");
 
 async function getUser(){
     const response = await fetch("/api/user/auth",{
-    method: "GET"
+        method: "GET"
     })
     const res = await response.json();
     if (res.data != null){
@@ -17,38 +17,19 @@ async function getUser(){
 }
 getUser();
 
-// .then(function(response){
-//     return 
-// })
-// .then(function(data){
-    
-// });
-
-// fetch("/api/user/auth",{
-//     method: "GET"
-// })
-// .then(function(response){
-//     return response.json();
-// })
-// .then(function(data){
-//     if (data.data != null){
-//         cart.setAttribute("href","/booking");
-//         user.setAttribute("onclick","member()");
-//     }else{
-//         cart.setAttribute("onclick","sign()");
-//         user.setAttribute("onclick","sign()");
-//     };
-// });
-
 //註冊＆登入
 const signInMenu = document.querySelector(".sign-in");
 const registerMenu = document.querySelector(".register");
+
 const hideBg = document.querySelector(".hide-bg");
 const body = document.querySelector(".body");
+
 const signAlert = document.querySelector(".sign-alert");
 const registerAlert = document.querySelector(".register-alert");
+
 const remind = document.querySelector(".remind");
 const textRemind = document.querySelector(".text-remind");
+
 const memberList = document.getElementById("member");
 const bg = document.querySelector(".bg");
 

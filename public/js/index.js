@@ -3,18 +3,16 @@ const page = 0
 const attractionUrl = "/api/attractions";
 
 //首頁載入景點
-fetch(attractionUrl+"?page="+page)
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
+async function getAttractions(){
+    const response = await fetch(attractionUrl+"?page="+page)
+    const data = await response.json();
     const dataList = data.data;
     let firstImg = [];
     let name = [];
     let mrtContent = [];
     let categoryContent = [];
     let id = [];
-    for (let i = 0; i<data.data.length; i++){
+    for (let i = 0; i<dataList.length; i++){
         firstImg.push(dataList[i].images[0]);
         name.push(dataList[i].name);
         mrtContent.push(dataList[i].mrt);
@@ -55,9 +53,14 @@ fetch(attractionUrl+"?page="+page)
         const link = document.querySelectorAll(".link");
         for(let i = 0; i<link.length; i++){
             link[i].setAttribute("href",`/attraction/${id[i]}`);
-        }
+        };
     };
-});
+};
+if (document.readyState === "complete"){
+    getAttractions();
+}else{
+    document.addEventListener("DOMContentLoaded", getAttractions);
+};
 
 //無限滾輪
 let nextPage = 1
