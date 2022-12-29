@@ -86,6 +86,7 @@ function submit(){
         for (i=0;i<input.length;i++){
             input[i].style.display = "none";
         };
+        radio.style.display = "none";
         data = {
             "name" : newName.value,
             "email" : newEmail.value,
