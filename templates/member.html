@@ -9,12 +9,19 @@
 
 <div class="content">
         <div class="bg-image">
-            <form method="POST" enctype="multipart/form-data"  action="/api/member/img" class="form" target="hideIframe">
+            <form enctype="multipart/form-data" class="form" target="hideIframe">
                 <img src="/image/profile.png" class="img">
+                <div class="load-wrap">
+                    <div class="load-3">
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                    </div>
+                </div>
                 <div class="file">
                     <input type="file" id="file-uploader" accept="image/*" class="img-input" name="file">➕
                 </div>
-                <button class="button-img">上傳</button>
+                <button class="button-img" onclick="changeImg()">上傳</button>
             </form>
         </div>
     <div class="wrap">
@@ -31,7 +38,6 @@
             <hr>
             <div class="text">性別：
                 <span id="sex" class="span"></span>
-                <!-- <input type="text" class="input" id="sexInput"> -->
                 <form class="radio">
                     <input value="男" id="gentle" type="radio" name="sex" checked>
                     <label for="男" class="radio-label">男</label>

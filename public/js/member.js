@@ -33,7 +33,7 @@ async function getMember(){
     const data = await response.json();
     const profile = data.data;
     if (profile.image != null){
-        img.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/"+profile.image;
+        img.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/"+profile.image+"?"+imgTime.getMilliseconds();
     }
     profileName.textContent = profile.name;
     profileEmail.textContent = profile.email;
@@ -128,3 +128,29 @@ fileUploader.addEventListener('change', function(e) {
     const file = e.target.files[0];
     img.src = URL.createObjectURL(file);
   });
+
+//update img
+const loading = document.querySelector(".load-wrap")
+function changeImg(){
+    const getImg = document.getElementById("file-uploader").files[0]
+    loading.style.display = "block"
+    let formData = new FormData();
+    formData.append('picture', getImg);
+    async function upload(){
+        const response = await fetch("api/member/img",{
+        method: "POST",
+        body: formData
+        });
+        const res = await response.json();
+        if (res.ok == true){
+            loading.style.display = "none";
+            showRemind("上傳成功");
+            setTimeout(reload, 1000);
+        }
+        if (res.error == true){
+            loading.style.display = "none";
+            showRemind(res.message);
+        };
+    };
+    upload();
+};

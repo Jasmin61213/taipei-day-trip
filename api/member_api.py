@@ -62,14 +62,13 @@ def profile():
 
 @member_api.route("/api/member/img", methods=['POST'])
 def upload_file():
-    file = request.files.get('file')
-    if file.filename == "":
-        return {"message": "no file"} 
+    file = request.files.get('picture')
+    if file == None:
+        return make_response(jsonify({"error":True,"message":"請上傳檔案"}),400)
     token = request.cookies.get('token')
     user = jwt.decode(token, jwt_secret, algorithms=["HS256"])
     user_id = user["id"]
-    file_type = filetype.guess_extension(file)
-    file.filename = str(user_id)+ "." + file_type
+    file.filename = "picture"+str(user_id)
     file_name = file.filename
     s3.upload_fileobj(
         file,

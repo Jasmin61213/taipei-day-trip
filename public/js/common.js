@@ -1,6 +1,7 @@
 //驗證是否登入
 const cart = document.getElementById("cartFunc");
 const user = document.getElementById("userFunc");
+const imgTime = new Date();
 
 async function getUser(){
     const response = await fetch("/api/user/auth",{
@@ -8,8 +9,10 @@ async function getUser(){
     })
     const res = await response.json();
     if (res.data != null){
+        user.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/picture"+res.data.id+"?"+imgTime.getMilliseconds();;
         cart.setAttribute("href","/booking");
         user.setAttribute("onclick","member()");
+
     }else{
         cart.setAttribute("onclick","sign()");
         user.setAttribute("onclick","sign()");

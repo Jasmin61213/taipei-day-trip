@@ -53,7 +53,6 @@ TPDirect.card.setup({
 })
 
 const submitButton = document.querySelector(".button")
-
 TPDirect.card.onUpdate(function (update) {
     // update.canGetPrime === true
     // --> call TPDirect.card.getPrime()
