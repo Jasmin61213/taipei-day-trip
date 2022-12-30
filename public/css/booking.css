@@ -101,12 +101,12 @@ hr{
     float: right;
 }
 
-button{
+.button{
     cursor: pointer;
     width: 173px;
     height: 36px;
     color: #ffffff;
-    background-color: #448899;
+    background-color: gray;
     border-radius: 5px;
     font-size: 19px;
     border: 0px none;
@@ -114,9 +114,9 @@ button{
     margin: 15px 0px 40px 830px;
 }
 
-button:hover{
+.button:hover{
     transition-duration: 0.4s;
-    background-color: #448899;
+    /* background-color: #448899; */
     box-shadow: 0 3px 3px 0 rgba(141, 141, 141, 0.738);
 }
 

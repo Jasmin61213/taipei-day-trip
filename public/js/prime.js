@@ -52,6 +52,21 @@ TPDirect.card.setup({
     }
 })
 
+const submitButton = document.querySelector(".button")
+
+TPDirect.card.onUpdate(function (update) {
+    // update.canGetPrime === true
+    // --> call TPDirect.card.getPrime()
+    if (update.canGetPrime) {
+        // Enable submit Button to get prime.
+        submitButton.removeAttribute('disabled');
+        submitButton.style.backgroundColor = "#448899";
+    } else {
+        // Disable submit Button to get prime.
+        submitButton.setAttribute('disabled', true);
+    };
+});
+
 function onSubmit() {
     const payName = document.getElementById("name").value
     const payEmail = document.getElementById("email").value
