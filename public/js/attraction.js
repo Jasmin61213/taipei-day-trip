@@ -1,70 +1,85 @@
 const url=window.location.pathname
 
 //載入景點頁面
-fetch("/api"+url)
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
+async function getAttractions(){
+    const response = await fetch("/api"+url)
+    const data = await response.json()
     const dataList = data.data;
+
     const imgContainer = document.getElementById("img-container");
     const imgContent = document.getElementById("img-content");
     const wrapperContent = document.getElementById("wrapper-content");
     const dotsList = document.getElementById("dot-content");
+
     //img & dot
     for (let i = 0; i<dataList.images.length; i++){
         const img = document.createElement("img");
         img.className = "img fade";
         img.src = dataList.images[i];
-        imgContainer.appendChild(img)
-        const dots = document.createElement("span")
-        dots.className = "dot"
-        dotsList.appendChild(dots)
-        dots.setAttribute("onclick",`slideOnclick(${i})`)
+        imgContainer.appendChild(img);
+        const dots = document.createElement("span");
+        dots.className = "dot";
+        dotsList.appendChild(dots);
+        dots.setAttribute("onclick",`slideOnclick(${i})`);
     };
+
     //name
     const oldName = document.querySelector(".name");
     const name = document.createElement("div");
     name.className = "name";
     name.textContent = dataList.name;
     imgContent.replaceChild(name,oldName);
+
     //cat-mrt
     const oldCat = document.querySelector(".cat-mrt");
     const cat = document.createElement("div");
     cat.className = "cat-mrt";
     cat.textContent = dataList.category+" at "+dataList.mrt;
     imgContent.replaceChild(cat,oldCat);
+
     //description
     const oldDescription = document.querySelector(".describe");
     const description = document.createElement("div");
     description.className = "describe";
     description.textContent = dataList.description;
     wrapperContent.replaceChild(description,oldDescription);
+
     //address
     const oldAddress = document.querySelector(".address");
     const address = document.createElement("div");
     address.className = "address";
     address.textContent = dataList.address;
     wrapperContent.replaceChild(address,oldAddress);
+
     //transport
     const oldTransport = document.querySelector(".transport");
     const transport = document.createElement("div");
     transport.className = "transport";
     transport.textContent = dataList.transport;
     wrapperContent.replaceChild(transport,oldTransport);
-    const items = document.querySelectorAll(".img")
-    items[0].style.display = "block"
-    const dots = document.querySelectorAll(".dot")
+
+    //顯示的照片
+    const items = document.querySelectorAll(".img");
+    items[0].style.display = "block";
+
+    //dots
+    const dots = document.querySelectorAll(".dot");
     dots[0].className += " active";
     document.title = dataList.name;
-    });
+};
+
+if (document.readyState === "complete"){
+    getAttractions();
+}else{
+    document.addEventListener("DOMContentLoaded", getAttractions);
+};
 
 //radio check
-
 function check(){
     let checked = document.querySelector('[name=reserve]:checked').value;
     let reserveFee2000 = document.querySelector(".reserve-fee2000");
     let reserveFee2500 = document.querySelector(".reserve-fee2500");
+
     if (checked == "morning" ){
         reserveFee2000.style.display = "block";
         reserveFee2500.style.display = "none";  
@@ -91,6 +106,7 @@ function slideOnclick(n){
 function showImg(n){
     const items = document.querySelectorAll(".img")
     const dots = document.querySelectorAll(".dot")
+
     if (n > items.length-1) { current = 0 };
     if (n < 0) { current = items.length-1 };
     for (let i = 0; i < items.length; i++){

@@ -38,11 +38,11 @@ def api_orders():
             else:
                 user = jwt.decode(token, jwt_secret, algorithms=["HS256"])
                 user_id = user["id"]
-                your_order = order.get_order_id(user_id)
-                list = []
-                for orders in your_order:
-                    list.append(orders[0])
-                return make_response({"data":list},200)
+                your_order = order.get_orders(user_id)
+                for i in range(len(your_order)):
+                    list=your_order[i]["images"].split("['")[1].split("']")[0].split("', '")
+                    your_order[i]["images"]=list
+                return make_response({"data":your_order},200)
         except:
             return make_response({"error":True,"message":"伺服器錯誤"},500)
 

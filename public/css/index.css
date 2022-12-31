@@ -144,11 +144,6 @@
     height: 45px;line-height: 45px;
 }
 
-a{
-    text-decoration: none;
-    color: #757575;
-}
-
 .link{
     transition-duration: 0.4s;
 }

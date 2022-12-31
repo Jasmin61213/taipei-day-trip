@@ -65,6 +65,7 @@
 .func--img{
     width: 25px;
     height: 25px;
+    border-radius: 50%;
 }
 
 .cart{
@@ -337,6 +338,11 @@
     text-align: center;
     line-height: 104px;
     color: #ffffff;
+}
+
+a{
+    text-decoration: none;
+    color: #757575;
 }
 
 @media (max-width:1199px){

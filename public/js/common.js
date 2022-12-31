@@ -1,31 +1,38 @@
 //驗證是否登入
 const cart = document.getElementById("cartFunc");
 const user = document.getElementById("userFunc");
-fetch("/api/user/auth",{
-    method: "GET"
-})
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.data != null){
+const imgTime = new Date();
+
+async function getUser(){
+    const response = await fetch("/api/user/auth",{
+        method: "GET"
+    })
+    const res = await response.json();
+    if (res.data != null){
+        user.src = "https://jasmin61213.s3.ap-northeast-1.amazonaws.com/picture"+res.data.id+"?"+imgTime.getMilliseconds();;
         cart.setAttribute("href","/booking");
         user.setAttribute("onclick","member()");
+
     }else{
         cart.setAttribute("onclick","sign()");
         user.setAttribute("onclick","sign()");
     };
-});
+}
+getUser();
 
 //註冊＆登入
 const signInMenu = document.querySelector(".sign-in");
 const registerMenu = document.querySelector(".register");
+
 const hideBg = document.querySelector(".hide-bg");
 const body = document.querySelector(".body");
+
 const signAlert = document.querySelector(".sign-alert");
 const registerAlert = document.querySelector(".register-alert");
+
 const remind = document.querySelector(".remind");
 const textRemind = document.querySelector(".text-remind");
+
 const memberList = document.getElementById("member");
 const bg = document.querySelector(".bg");
 

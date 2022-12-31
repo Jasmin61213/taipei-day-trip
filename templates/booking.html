@@ -39,10 +39,16 @@
         </div>
         <hr>
         <div class="content_text right" id="fee">總價：新台幣 2000 元</div>
-        <button onclick="onSubmit()">確認訂購並付款</button>
+        <button onclick="onSubmit()" class="button" disabled="true">確認訂購並付款</button>
     </div>
 </div>
-
+<div class="load-wrap">
+    <div class="load-3">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+</div>
 {% endblock %}
 
 {% block script %}

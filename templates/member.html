@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<title>會員中心</title>
+<link rel="stylesheet" type="text/css" href="/css/member.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+        <div class="bg-image">
+            <form enctype="multipart/form-data" class="form" target="hideIframe">
+                <img src="/image/profile.png" class="img">
+                <div class="load-wrap">
+                    <div class="load-3">
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                    </div>
+                </div>
+                <div class="file">
+                    <input type="file" id="file-uploader" accept="image/*" class="img-input" name="file">➕
+                </div>
+                <button class="button-img" onclick="changeImg()">上傳</button>
+            </form>
+        </div>
+    <div class="wrap">
+        <div class="profile">
+            <div class="text">姓名：
+                <span id="name" class="span"></span>
+                <input type="text" class="input" id="nameInput">
+            </div>
+            <hr>
+            <div class="text">信箱：
+                <span id="email" class="span"></span>
+                <input type="text" class="input" id="emailInput">
+            </div>
+            <hr>
+            <div class="text">性別：
+                <span id="sex" class="span"></span>
+                <form class="radio">
+                    <input value="男" id="gentle" type="radio" name="sex" checked>
+                    <label for="男" class="radio-label">男</label>
+                    <input value="女" id="female" type="radio" name="sex">
+                    <label for="女" class="radio-label">女</label>
+                </form>
+                
+            </div>
+            <hr>
+            <div class="text">生日：
+                <span id="age" class="span"></span>
+                <input type="date" class="input" id="ageInput">
+            </div>
+            <hr>
+            <div class="text">電話號碼：
+                <span id="phone" class="span"></span>
+                <input type="text" class="input" id="phoneInput">
+            </div>
+            <hr>
+            <div class="text">地址：
+                <span id="address" class="span"></span>
+                <input type="text" class="input" id="addressInput">
+            </div>
+            <div class="button-center">
+                <button class="button-edit" onclick="edit()">編輯</button>
+                <button class="button-submit" onclick="submit()">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="myIframe" name="hideIframe" style="display:none;"></iframe>    
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/js/member.js"></script>
+{% endblock %}
