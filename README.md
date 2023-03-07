@@ -1,40 +1,62 @@
-# Taipei-day-trip
+# [Taipei-day-trip](http://52.196.101.116:3000/)
 
-## 功能
-* 會員註冊系統
-* 會員資料編輯（會員大頭貼存放AWS S3)
-* 景點分類搜尋
-* 首頁景點顯示Infinite scroll
-* 行程預定
-* 查看歷史訂單
-* Tappay線上付款
+Test account and password: ply@ply.com / ply
 
-## 前端
+
+
+## 🔖 Catalog
+* [Main Features](#main-features)
+* [Frontend Technique](#frontend-technique)
+* [Backend Technique](#backend-technique)
+  * [Environment](#environment)
+  * [Database](#database)
+  * [Cloud Service](#cloud-service)
+  * [Version Control](#version-control)
+  * [Tappay API](#tappay-api)
+* [Figma](#figma)
+* [API Doc](#api-doc)
+* [Contact](#contact)
+
+## Main Features
+* Membership system
+* Keyword-based search for related attractions
+* Infinite scrolling
+* Shopping cart system
+* Review of order history
+* Online payment system using Tappay.
+
+## Frontend Technique
 * HTML
 * CSS
-* Javascript
+* JavaScript
 
-## 後端
+## Backend Technique
+### Environment
 * Python Flask
 
-## 資料庫
-* Mysql
+### Database
+* MySQL
 
-## AWS雲端服務
-* EC2
-* S3
+### Cloud Service
+* AWS EC2
+* AWS S3
+* AWS CloudFront
 
-## 版本控制
+### Version Control
 * Git
-* Github
+* GitGub
 
-## 串接Tappay API
+### Tappay API
 * 測試卡號：4242 4242 4242 4242
-* 到期日：01/23
+* 到期日：12/34
 * CVV：123
 
-## Figma設計圖
+## Figma
 * [Figma設計圖](https://www.figma.com/file/MZkYBH31H5gyLoZoZq116j/Taipei-Trip-%E5%8F%B0%E5%8C%97%E4%B8%80%E6%97%A5%E9%81%8A-2.0?node-id=2%3A139)
 
-## API文件
+## API Doc
 * [API文件](https://app.swaggerhub.com/apis-docs/padax/taipei-day-trip/1.1.0#/)
+
+## Contact
+* 傅雅得 Jasmin Fu
+* 📪 Email : ytfu1213@gmail.com
