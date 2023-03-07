@@ -2,7 +2,7 @@
 
 Test account and password: ply@ply.com / ply
 
-
+<img width="1189" alt="image" src="https://user-images.githubusercontent.com/110441965/223507423-5e551938-c2a3-4eb6-8110-28beca9cc135.png">
 
 ## 🔖 Catalog
 * [Main Features](#main-features)
