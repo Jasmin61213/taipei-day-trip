@@ -12,7 +12,7 @@ Test account and password: ply@ply.com / ply
   * [Database](#database)
   * [Cloud Service](#cloud-service)
   * [Version Control](#version-control)
-  * [Tappay API](#tappay-api)
+  * [TapPay API](#tappay-api)
 * [Figma](#figma)
 * [API Doc](#api-doc)
 * [Contact](#contact)
@@ -23,7 +23,7 @@ Test account and password: ply@ply.com / ply
 * Infinite scrolling
 * Shopping cart system
 * Review of order history
-* Online payment system using Tappay.
+* Online payment system using TapPay.
 
 ## Frontend Technique
 * HTML
@@ -46,7 +46,7 @@ Test account and password: ply@ply.com / ply
 * Git
 * GitGub
 
-### Tappay API
+### TapPay API
 * 測試卡號：4242 4242 4242 4242
 * 到期日：12/34
 * CVV：123
