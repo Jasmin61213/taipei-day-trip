@@ -52,7 +52,7 @@ Test account and password: ply@ply.com / ply
 
 ### TapPay API
 * 測試卡號：4242 4242 4242 4242
-* 到期日：12/34
+* 到期日：01/24
 * CVV：123
 
 ## Backend Artictecture
