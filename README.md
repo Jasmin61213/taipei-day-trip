@@ -1,6 +1,6 @@
 # 🔗 [Taipei-day-trip](http://52.196.101.116:3000/)
 
-### Taipei-day-trip allows you to search for attractions in Taipei and book your trip on the website.
+### Taipei-day-trip is a website providing tourists to explore attractions in Taipei and plan their own trips.
 
 Test account and password: ply@ply.com / ply
 
