@@ -15,6 +15,8 @@ Test account and password: ply@ply.com / ply
   * [Cloud Service](#cloud-service)
   * [Version Control](#version-control)
   * [TapPay API](#tappay-api)
+* [Backend Artictecture](#backend-artictecture)
+* [Database Schema](#database-schema)
 * [Figma](#figma)
 * [API Doc](#api-doc)
 * [Contact](#contact)
@@ -52,6 +54,12 @@ Test account and password: ply@ply.com / ply
 * 測試卡號：4242 4242 4242 4242
 * 到期日：12/34
 * CVV：123
+
+## Backend Artictecture
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/110441965/223939167-308faa46-fced-4b7f-a908-674d729e0f92.png">
+
+## Database Schema
+<img width="697" alt="image" src="https://user-images.githubusercontent.com/110441965/223940214-c8941700-32d5-4090-85e7-f1eb022b0d48.png">
 
 ## Figma
 * [Figma設計圖](https://www.figma.com/file/MZkYBH31H5gyLoZoZq116j/Taipei-Trip-%E5%8F%B0%E5%8C%97%E4%B8%80%E6%97%A5%E9%81%8A-2.0?node-id=2%3A139)
