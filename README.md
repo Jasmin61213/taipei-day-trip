@@ -48,7 +48,7 @@ Test account and password: ply@ply.com / ply
 
 ### Version Control
 * Git
-* GitGub
+* GitHub
 
 ### TapPay API
 * 測試卡號：4242 4242 4242 4242
